@@ -1,0 +1,64 @@
+:root {
+    --clr-pri: rgb(117, 47, 15);
+    --clr-pri-light: rgb(153, 72, 35);
+    --shelf-height: 17rem;
+    --book-height: 15rem;
+    font-size: 62.5%;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    height: 100%;
+    width: 100%;
+    background: var(--clr-pri-light);
+}
+
+/*--HEADER START--*/
+/*--HEADER END--*/
+
+/*--BOOKSHELF START--*/
+.bookshelf-container {
+
+}
+.shelves {
+    display: flex;
+    align-items: flex-end;
+    height: var(--shelf-height);
+    margin: 3rem;
+    padding: 0 2rem;
+    gap: 1rem;
+    background: var(--clr-pri);
+    border-bottom: .8rem solid var(--clr-pri-light);
+}
+/*--BOOKSHELF END--*/
+
+/*--BOOK START--*/
+.book {
+    width: 10rem;
+    height: var(--book-height);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: red;
+    border-radius: .3rem;
+}
+.title {
+    font-size: 2rem;
+}
+.title-underline {
+    width: 75%;
+    margin: .8rem 0 1.5rem 0;
+    color: beige;
+}
+.author {
+    font-size: 1.4rem;
+}
+.pages {
+    font-size: 1.2rem;
+}
+/*--BOOK END--*/

@@ -3,6 +3,7 @@
     --clr-pri-light: rgb(153, 72, 35);
     --shelf-height: 17rem;
     --book-height: 15rem;
+    --book-gap: 1rem;
     font-size: 62.5%;
 }
 * {
@@ -29,7 +30,7 @@ body {
     height: var(--shelf-height);
     margin: 3rem;
     padding: 0 2rem;
-    gap: 1rem;
+    gap: var(--book-gap);
     background: var(--clr-pri);
     border-bottom: .8rem solid var(--clr-pri-light);
 }
@@ -41,6 +42,7 @@ body {
     height: var(--book-height);
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
     justify-content: center;
     align-items: center;
     text-align: center;

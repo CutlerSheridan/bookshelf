@@ -46,7 +46,6 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: red;
     border-radius: .3rem;
 }
 .title {
@@ -62,5 +61,11 @@ body {
 }
 .pages {
     font-size: 1.2rem;
+}
+.read {
+    background: green;
+}
+.not-read {
+    background: red;
 }
 /*--BOOK END--*/

@@ -10,6 +10,16 @@ function Book(title, author, pages, hasRead) {
 Book.prototype = {
     info: function() {
         return `${this.title}, by ${this.author}.\n${this.pages} pages long.\n${this.hasRead ? "Read." : "Not read."}`;
+    },
+    toggleReadState: function() {
+        this.hasRead = !this.hasRead;
+    },
+    toggleReadStyle: function(bookElement) {
+        if (this.hasRead) {
+            bookElement.classList.toggle("not-read");
+        } else {
+            bookElement.classList.toggle("read");
+        }
     }
 }
 
@@ -58,7 +68,8 @@ function clearShelves() {
 }
 function createBookElement(book) {
     const bookElement = document.createElement("div");
-    bookElement.classList.add("book");
+    bookElement.classList.add("book", "read", "not-read");
+    book.toggleReadStyle(bookElement);
     bookElement.style.width = `${book.pages / 60}rem`;
     const bookTitle = document.createElement("div");
     bookTitle.classList.add("title");
@@ -81,7 +92,6 @@ function createBookElement(book) {
     shelfToUse.appendChild(bookElement);
 }
 function calculateCurrentShelf(newBookWidth) {
-    // using a flex would be sooooo much more performant
     const shelves = document.querySelectorAll(".shelves");
     const shelfStyle = getComputedStyle(shelves[0]);
     const shelfPadding = parseInt(shelfStyle.paddingLeft) + parseInt(shelfStyle.paddingRight);
@@ -96,7 +106,6 @@ function calculateCurrentShelf(newBookWidth) {
         booksOnShelf.forEach(bookElement => {
             const bookWidth = parseInt(getComputedStyle(bookElement).width);
             booksOnShelfWidth += bookWidth;
-            //console.log(`bookWidth: ${bookWidth}`);
             console.log(bookElement.textContent);
         });
 
@@ -113,5 +122,12 @@ function calculateCurrentShelf(newBookWidth) {
     }
     currentShelf = 0;
 }
+/*function toggleReadStyle(book, bookElement) {
+    if (book.hasRead) {
+        bookElement.classList.toggle("not-read");
+    } else {
+        bookElement.classList.toggle("read");
+    }
+}*/
 
 /*--VIEW END--*/

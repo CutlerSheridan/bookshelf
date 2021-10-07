@@ -1,11 +1,14 @@
 # A bookshelf
 
 ##### TO-DO NEXT
-- start with x(3?) shelves then add more as needed
+- add top menu bar (fixed?)
+- add "add book" button
+- add placeholder for "sort" button
 
 - fuck should i just redo all the shelves with flex or is it worth the facility of having the shelf underlines in their proper, exact places?
 
 ##### TO-DO LATER
+- start with x(3?) shelves then add more as needed
 - add hover button to toggle .read vs. .not-read
 - add hover button to remove from bookshelf
 - figure out why the books will go like 6px into the right padding
@@ -14,10 +17,13 @@
     - shorten author and title names by abbreviating probably
     - add popup on hover for shortened info of narrow books
 - by default, organize by author last name
-    - sort them different ways (alphabetical titles, author first name, last name, page count, read/not read)
-        - sort multiple ways at once?
+    - sort them different ways (alphabetical titles, author first name, last name, page count, read/not read) - to do this, maybe create a global int variable for currentSortMethod with a function that organizes myBookshelf and re-populates display based on that variable 
+        - createNewBook would have to account for this -- actually it should automatically if "New Book" just pushes book onto array, sorts it, then calls updateBooksDisplay()
+    - sort multiple ways at once?
     - how to make things draggable?  not necessary but interesting question
     - add genres?
+
+    - add credit
 
 ###### DONE
 - add .read and .not-read classes to style differently somehow

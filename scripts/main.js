@@ -64,7 +64,7 @@ function clearShelves() {
         const booksOnShelf = document.createRange();
         booksOnShelf.selectNodeContents(shelf);
         booksOnShelf.deleteContents();
-    })
+    });
 }
 function createBookElement(book) {
     const bookElement = document.createElement("div");

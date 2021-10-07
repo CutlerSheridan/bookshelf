@@ -1,6 +1,7 @@
 :root {
     --clr-pri: rgb(117, 47, 15);
     --clr-pri-light: rgb(153, 72, 35);
+    --clr-sec: rgb(255, 238, 0);
     --shelf-height: 17rem;
     --book-height: 15rem;
     --book-gap: 1rem;
@@ -18,6 +19,27 @@ body {
 }
 
 /*--HEADER START--*/
+header {
+    height: 10rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.site-title {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 5rem;
+}
+.btns-container {
+    display: flex;
+    gap: 1rem;
+}
+.header-btn {
+    background: var(--clr-sec);
+    padding: 1rem;
+    font-size: 2rem;
+    border: none;
+    border-radius: .3rem;
+}
 /*--HEADER END--*/
 
 /*--BOOKSHELF START--*/

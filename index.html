@@ -7,8 +7,35 @@
 
 <body>
     <header>
-
+        <h1 class="site-title">Shelved</h1>
+        <div class="btns-container">
+            <button class="header-btn">Add a book</button>
+            <button class="header-btn">Sort</button>
+        </div>
     </header>
+
+    <div class="form-container invisible">
+        <form>
+            <h2 class="form-heading">New book</h2>
+            <div class="form-group">
+                <label class="form-label" for="title">Title:</label>
+                <input type="text" class="form-input" name="title" placeholder="Title of book" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="author">Author:</label>
+                <input type="text" class="form-input" name="author" placeholder="Author's name" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="page-count">Number of pages:</label>
+                <input type="number" class="form-input" name="page-count" placeholder="Page count" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="read-or-not">Have you read it?</label>
+                <input type="checkbox" name="read-or-not" required>
+            </div>
+            <input type="submit" value="Add">
+        </form>
+    </div>
 
     <div class="bookshelf-container">
         <div class="shelves shelf0"></div>

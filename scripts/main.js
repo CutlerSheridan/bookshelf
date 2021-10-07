@@ -46,7 +46,23 @@ updateBooksDisplay();
 /*--MODEL END--*/
 
 /*--CONTROL START--*/
-// logic
+const addBookButton = document.querySelector("#add-book-button");
+addBookButton.addEventListener("click", toggleAddBookFormVisibility);
+const addBookForm = document.querySelector(".form-container");
+
+function toggleAddBookFormVisibility() {
+    addBookForm.classList.toggle("invisible");
+    if (addBookForm.style.visibility != "hidden") {
+        addBookForm.addEventListener("click", implementFormOutskirtClickBehavior);
+    } else {
+        addBookForm.removeEventListener("click", implementFormOutskirtClickBehavior);
+    }
+}
+function implementFormOutskirtClickBehavior(e) {
+    if (e.target === addBookForm) {
+        toggleAddBookFormVisibility();
+    }
+}
 /*--CONTROL END--*/
 
 /*--VIEW START--*/

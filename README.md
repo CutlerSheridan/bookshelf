@@ -2,7 +2,6 @@
 
 ##### TO-DO NEXT
 - research input name vs. id re: labels and fix
-- wire "new book" form to "add book" button
 - collect data from "new book" form upon submission
 - dismiss "new book" form upon submission
 - add book after "new book" form submission
@@ -28,6 +27,9 @@
 - add credit
 
 ###### DONE
+- dismiss "new book" form when clicking outside form
+- wire "new book" form to "add book" button
+- ///
 - create "new book" form
 - add "add book" button
 - add placeholder for "sort" button

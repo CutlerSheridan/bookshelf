@@ -17,21 +17,21 @@
     <div class="form-container invisible">
         <form>
             <h2 class="form-heading">New book</h2>
-            <div class="form-group">
+            <div class="form-group form-group-vertical">
                 <label class="form-label" for="title">Title:</label>
-                <input type="text" class="form-input" name="title" placeholder="Title of book" required>
+                <input type="text" class="form-input" name="title" placeholder="Title of book" autocomplete="off" required>
             </div>
-            <div class="form-group">
+            <div class="form-group form-group-vertical">
                 <label class="form-label" for="author">Author:</label>
-                <input type="text" class="form-input" name="author" placeholder="Author's name" required>
+                <input type="text" class="form-input" name="author" placeholder="Author's name" autocomplete="off" required>
             </div>
-            <div class="form-group">
+            <div class="form-group form-group-horizontal" id="page-count-group">
                 <label class="form-label" for="page-count">Number of pages:</label>
-                <input type="number" class="form-input" name="page-count" placeholder="Page count" required>
+                <input type="number" class="form-input" name="page-count" min="1" max="9999" maxlength="4" autocomplete="off" required>
             </div>
-            <div class="form-group">
+            <div class="form-group form-group-horizontal">
                 <label class="form-label" for="read-or-not">Have you read it?</label>
-                <input type="checkbox" name="read-or-not" required>
+                <input type="checkbox" name="read-or-not">
             </div>
             <input type="submit" value="Add">
         </form>

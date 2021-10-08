@@ -47,21 +47,48 @@ updateBooksDisplay();
 
 /*--CONTROL START--*/
 const addBookButton = document.querySelector("#add-book-button");
-addBookButton.addEventListener("click", toggleAddBookFormVisibility);
-const addBookForm = document.querySelector(".form-container");
+addBookButton.addEventListener("click", clearAndDisplayaddBookScreen);
+const addBookScreen = document.querySelector(".form-container");
+const bookForm = document.getElementById("book-form");
 
-function toggleAddBookFormVisibility() {
-    addBookForm.classList.toggle("invisible");
-    if (addBookForm.style.visibility != "hidden") {
-        addBookForm.addEventListener("click", implementFormOutskirtClickBehavior);
+
+function clearAndDisplayaddBookScreen() {
+    bookForm.reset();
+    toggleaddBookScreenVisibility();
+}
+function toggleaddBookScreenVisibility() {
+    addBookScreen.classList.toggle("invisible");
+    if (!addBookScreen.classList.contains("invisible")) {
+        addBookScreen.addEventListener("click", implementFormOutskirtClickBehavior);
     } else {
-        addBookForm.removeEventListener("click", implementFormOutskirtClickBehavior);
+        addBookScreen.removeEventListener("click", implementFormOutskirtClickBehavior);
     }
 }
 function implementFormOutskirtClickBehavior(e) {
-    if (e.target === addBookForm) {
-        toggleAddBookFormVisibility();
+    if (e.target === addBookScreen) {
+        toggleaddBookScreenVisibility();
     }
+}
+
+bookForm.addEventListener("submit", createBookFromForm);
+function createBookFromForm(e) {
+    e.preventDefault();
+    const newTitle = bookForm.elements["title"];
+    const newAuthor = bookForm.elements["author"];
+    const newPageCount = bookForm.elements["page-count"];
+    const newHasRead = bookForm.elements["read-or-not"];
+
+    const newBook = new Book(
+        newTitle.value,
+        newAuthor.value,
+        newPageCount.value,
+        newHasRead.checked
+    );
+    //
+    // sorting logic here
+    //
+    updateBooksDisplay();
+    toggleaddBookScreenVisibility();
 }
 /*--CONTROL END--*/
 
@@ -103,7 +130,6 @@ function createBookElement(book) {
     bookElement.append(...bookInfo);
 
     calculateCurrentShelf(parseInt(bookElement.style.width) * 10);
-    console.log(`current shelf: ${currentShelf}`);
     const shelfToUse = document.querySelector(`.shelf${currentShelf}`);
     shelfToUse.appendChild(bookElement);
 }
@@ -113,7 +139,6 @@ function calculateCurrentShelf(newBookWidth) {
     const shelfPadding = parseInt(shelfStyle.paddingLeft) + parseInt(shelfStyle.paddingRight);
     const shelfWidth = parseInt(shelfStyle.width) - shelfPadding;
     const bookGap = parseInt(shelfStyle.gap);
-    console.log("\ninside calculateCurrent");
 
     for (let i = currentShelf; i < shelves.length; i++) {
         const booksOnShelf = document.querySelectorAll(`.shelf${i} > *`);
@@ -122,15 +147,14 @@ function calculateCurrentShelf(newBookWidth) {
         booksOnShelf.forEach(bookElement => {
             const bookWidth = parseInt(getComputedStyle(bookElement).width);
             booksOnShelfWidth += bookWidth;
-            console.log(bookElement.textContent);
         });
 
         if (booksOnShelf.length > 1) {
             booksGapSum = bookGap * (booksOnShelf.length - 1);
         }
-        console.log(`shelf width: ${shelfWidth}`);
+        /*console.log(`shelf width: ${shelfWidth}`);
         console.log(`booksOnShelfWidth: ${booksOnShelfWidth}`);
-        console.log(`newBookWidth: ${newBookWidth}`);
+        console.log(`newBookWidth: ${newBookWidth}`);*/
         if (newBookWidth < (shelfWidth - (booksOnShelfWidth + booksGapSum))) {
             currentShelf = i;
             return;

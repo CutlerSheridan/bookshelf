@@ -21,9 +21,9 @@
 - handle long titles/authors
     - shorten author and title names by abbreviating probably
     - add popup on hover for shortened info of narrow books
-- add genres?
-
 - add credit
+###### Other
+- add genres?
 
 (fuck should i just redo all the shelves with flex or is it worth the facility of having the shelf underlines in their proper, exact places?)
 
@@ -34,7 +34,6 @@
 - add book after "new book" form submission
 - clear "new book" form for next time
 - research input name vs. id re: labels and fix
-
 - *v 0.3.x*
 - dismiss "new book" form when clicking outside form
 - wire "new book" form to "add book" button

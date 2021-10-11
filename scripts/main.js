@@ -13,13 +13,6 @@ Book.prototype = {
     },
     toggleReadState: function() {
         this.hasRead = !this.hasRead;
-    },
-    toggleReadStyle: function(bookElement) {
-        if (this.hasRead) {
-            bookElement.classList.toggle("not-read");
-        } else {
-            bookElement.classList.toggle("read");
-        }
     }
 }
 
@@ -47,16 +40,24 @@ updateBooksDisplay();
 
 /*--CONTROL START--*/
 const addBookButton = document.querySelector("#add-book-button");
-addBookButton.addEventListener("click", clearAndDisplayaddBookScreen);
+addBookButton.addEventListener("click", clearAndDisplayAddBookScreen);
 const addBookScreen = document.querySelector(".form-container");
 const bookForm = document.getElementById("book-form");
 
 
-function clearAndDisplayaddBookScreen() {
+function clearAndDisplayAddBookScreen(e) {
+    e.preventDefault();
     bookForm.reset();
-    toggleaddBookScreenVisibility();
+    toggleAddBookScreenVisibility();
+    focusOnTitleField();
 }
-function toggleaddBookScreenVisibility() {
+// why tf doesn't this work
+function focusOnTitleField() {
+    addBookButton.blur();
+    bookForm.elements["title"].focus();
+    console.log(bookForm.elements["title"]);
+}
+function toggleAddBookScreenVisibility() {
     addBookScreen.classList.toggle("invisible");
     if (!addBookScreen.classList.contains("invisible")) {
         addBookScreen.addEventListener("click", implementFormOutskirtClickBehavior);
@@ -66,7 +67,7 @@ function toggleaddBookScreenVisibility() {
 }
 function implementFormOutskirtClickBehavior(e) {
     if (e.target === addBookScreen) {
-        toggleaddBookScreenVisibility();
+        toggleAddBookScreenVisibility();
     }
 }
 
@@ -88,7 +89,11 @@ function createBookFromForm(e) {
     // sorting logic here
     //
     updateBooksDisplay();
-    toggleaddBookScreenVisibility();
+    toggleAddBookScreenVisibility();
+}
+function sortBooks(sortMethod) {
+    // actual sorting logic here
+
 }
 /*--CONTROL END--*/
 
@@ -96,10 +101,23 @@ function createBookFromForm(e) {
 window.addEventListener("resize", updateBooksDisplay);
 
 function updateBooksDisplay() {
-    // clear the bookshelf
     currentShelf = 0;
     clearShelves();
-    myBookshelf.forEach(book => createBookElement(book));
+    //myBookshelf.forEach(book => createBookElement(book));
+    for (let i = 0; i < myBookshelf.length; i++) {
+        const newBookElement = createBookElement(myBookshelf[i]);
+        calculateCurrentShelf(parseInt(newBookElement.style.width) * 10);
+        const shelfToUse = document.querySelector(`.shelf${currentShelf}`);
+        shelfToUse.appendChild(newBookElement);
+    }
+
+    const allBookElements = document.querySelectorAll(".book");
+    allBookElements.forEach(bookElement => bookElement.addEventListener("click", () => toggleReadStyle(bookElement)));
+}
+function toggleReadStyle(bookElement) {
+    myBookshelf[bookElement.dataset.orderLoc].toggleReadState();
+    bookElement.classList.toggle("not-read");
+    bookElement.classList.toggle("read");
 }
 function clearShelves() {
     const shelves = document.querySelectorAll(".shelves");
@@ -111,8 +129,9 @@ function clearShelves() {
 }
 function createBookElement(book) {
     const bookElement = document.createElement("div");
+    bookElement.dataset.orderLoc = myBookshelf.indexOf(book);
     bookElement.classList.add("book", "read", "not-read");
-    book.toggleReadStyle(bookElement);
+    bookElement.classList.toggle(book.hasRead ? "not-read" : "read");
     bookElement.style.width = `${book.pages / 60}rem`;
     const bookTitle = document.createElement("div");
     bookTitle.classList.add("title");
@@ -128,10 +147,7 @@ function createBookElement(book) {
 
     const bookInfo = [bookTitle, titleUnderline, bookAuthor, bookPages];
     bookElement.append(...bookInfo);
-
-    calculateCurrentShelf(parseInt(bookElement.style.width) * 10);
-    const shelfToUse = document.querySelector(`.shelf${currentShelf}`);
-    shelfToUse.appendChild(bookElement);
+    return bookElement;
 }
 function calculateCurrentShelf(newBookWidth) {
     const shelves = document.querySelectorAll(".shelves");
@@ -162,12 +178,5 @@ function calculateCurrentShelf(newBookWidth) {
     }
     currentShelf = 0;
 }
-/*function toggleReadStyle(book, bookElement) {
-    if (book.hasRead) {
-        bookElement.classList.toggle("not-read");
-    } else {
-        bookElement.classList.toggle("read");
-    }
-}*/
 
 /*--VIEW END--*/

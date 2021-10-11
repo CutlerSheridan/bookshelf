@@ -14,6 +14,7 @@
 ###### Behavior
 - start with x(3?) shelves then add more as needed
 - figure out why the books will go like 6px into the right padding
+- focus on title field upon pressing "add book"
 ###### Style
 - add signifier for which book was just added; maybe an outline that dissipates
 - figure out what read vs. unread should look like
@@ -28,6 +29,8 @@
 (fuck should i just redo all the shelves with flex or is it worth the facility of having the shelf underlines in their proper, exact places?)
 
 ##### DONE
+- *v0.4.01*
+- add basic logic for toggling read vs. unread
 - *v 0.4.0*
 - collect data from "new book" form upon submission
 - dismiss "new book" form upon submission

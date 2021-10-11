@@ -111,13 +111,8 @@ function updateBooksDisplay() {
         shelfToUse.appendChild(newBookElement);
     }
 
-    const allBookElements = document.querySelectorAll(".book");
-    allBookElements.forEach(bookElement => bookElement.addEventListener("click", () => toggleReadStyle(bookElement)));
-}
-function toggleReadStyle(bookElement) {
-    myBookshelf[bookElement.dataset.orderLoc].toggleReadState();
-    bookElement.classList.toggle("not-read");
-    bookElement.classList.toggle("read");
+    const allReadToggles = document.querySelectorAll(".read-toggle");
+    allReadToggles.forEach(readToggle => readToggle.addEventListener("click", () => toggleReadStyle(readToggle)));
 }
 function clearShelves() {
     const shelves = document.querySelectorAll(".shelves");
@@ -128,8 +123,10 @@ function clearShelves() {
     });
 }
 function createBookElement(book) {
+    const bookIndex = myBookshelf.indexOf(book);
+
     const bookElement = document.createElement("div");
-    bookElement.dataset.orderLoc = myBookshelf.indexOf(book);
+    bookElement.dataset.orderLoc = bookIndex;
     bookElement.classList.add("book", "read", "not-read");
     bookElement.classList.toggle(book.hasRead ? "not-read" : "read");
     bookElement.style.width = `${book.pages / 60}rem`;
@@ -145,8 +142,17 @@ function createBookElement(book) {
     bookPages.classList.add("pages");
     bookPages.textContent = `${book.pages} pages`;
 
-    const bookInfo = [bookTitle, titleUnderline, bookAuthor, bookPages];
-    bookElement.append(...bookInfo);
+    const bookControls = document.createElement("div");
+    bookControls.classList.add("book-controls");
+    const readToggle = document.createElement("input");
+    readToggle.dataset.orderLoc = bookIndex;
+    readToggle.type = "checkbox";
+    readToggle.checked = book.hasRead;
+    readToggle.classList.add("read-toggle");
+    bookControls.append(readToggle);
+
+    //const bookInfo = [bookTitle, titleUnderline, bookAuthor, bookPages, bookControls];
+    bookElement.append(...[bookTitle, titleUnderline, bookAuthor, bookPages, bookControls]);
     return bookElement;
 }
 function calculateCurrentShelf(newBookWidth) {
@@ -178,5 +184,10 @@ function calculateCurrentShelf(newBookWidth) {
     }
     currentShelf = 0;
 }
-
+function toggleReadStyle(readToggle) {
+    myBookshelf[readToggle.dataset.orderLoc].toggleReadState();
+    const bookElement = document.querySelector(`.book[data-order-loc="${readToggle.dataset.orderLoc}"]`);
+    bookElement.classList.toggle("not-read");
+    bookElement.classList.toggle("read");
+}
 /*--VIEW END--*/

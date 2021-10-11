@@ -1,11 +1,13 @@
 # A bookshelf
 
 #### TO-DO NEXT
-- add hover button to toggle .read vs. .not-read
-- add hover button to remove from bookshelf
+- make hover controls stay at the bottom of the book spine
+- change read toggle to eyeball
+- make "add book" form stop controls on anterior books from displaying on hover
 
 #### TO-DO LATER
 ###### Features
+- add hover button to remove from bookshelf
 - add sorting capability
     - sort them different ways (alphabetical titles, author first name, last name, page count, read/not read) -- to do this, maybe create a global int variable for currentSortMethod with a function that organizes myBookshelf and re-populates display based on that variable 
         - createNewBook would have to account for this -- actually it should automatically if "New Book" just pushes book onto array, sorts it, then calls updateBooksDisplay()
@@ -29,6 +31,8 @@
 (fuck should i just redo all the shelves with flex or is it worth the facility of having the shelf underlines in their proper, exact places?)
 
 ##### DONE
+- *v0.5.0*
+- add hover button to toggle .read vs. .not-read
 - *v0.4.01*
 - add basic logic for toggling read vs. unread
 - *v 0.4.0*

@@ -111,7 +111,7 @@ function updateBooksDisplay() {
         shelfToUse.appendChild(newBookElement);
     }
 
-    const allReadToggles = document.querySelectorAll(".read-toggle");
+    const allReadToggles = document.querySelectorAll(".read-toggle-icon");
     allReadToggles.forEach(readToggle => readToggle.addEventListener("click", () => toggleReadStyle(readToggle)));
 }
 function clearShelves() {
@@ -128,7 +128,9 @@ function createBookElement(book) {
     const bookElement = document.createElement("div");
     bookElement.dataset.orderLoc = bookIndex;
     bookElement.classList.add("book", "read", "not-read");
-    bookElement.classList.toggle(book.hasRead ? "not-read" : "read");
+    if (!book.hasRead) {
+        bookElement.classList.toggle("read");
+    }
     bookElement.style.width = `${book.pages / 60}rem`;
     const bookTitle = document.createElement("div");
     bookTitle.classList.add("title");
@@ -145,11 +147,23 @@ function createBookElement(book) {
     const bookControls = document.createElement("div");
     bookControls.classList.add("book-controls");
     const readToggle = document.createElement("input");
-    readToggle.dataset.orderLoc = bookIndex;
     readToggle.type = "checkbox";
     readToggle.checked = book.hasRead;
     readToggle.classList.add("read-toggle");
-    bookControls.append(readToggle);
+    readToggle.id = `read-toggle-${bookIndex}`;
+    const readToggleIconLabel = document.createElement("label");
+    readToggleIconLabel.dataset.orderLoc = bookIndex;
+    readToggleIconLabel.htmlFor = `read-toggle-${bookIndex}`;
+    readToggleIconLabel.classList.add("read-toggle-icon", "read-toggle-icon-checked");
+    if (!book.hasRead) {
+        readToggleIconLabel.classList.toggle("read-toggle-icon-checked");
+    }
+    const readToggleIconSpan = document.createElement("span");
+    readToggleIconSpan.classList.add("material-icons-outlined");
+    readToggleIconSpan.textContent = "check_circle_outlined";
+    readToggleIconLabel.append(readToggleIconSpan);
+    bookControls.append(...[readToggle, readToggleIconLabel]);
+    console.log(readToggle, readToggleIconLabel);
 
     //const bookInfo = [bookTitle, titleUnderline, bookAuthor, bookPages, bookControls];
     bookElement.append(...[bookTitle, titleUnderline, bookAuthor, bookPages, bookControls]);
@@ -187,7 +201,7 @@ function calculateCurrentShelf(newBookWidth) {
 function toggleReadStyle(readToggle) {
     myBookshelf[readToggle.dataset.orderLoc].toggleReadState();
     const bookElement = document.querySelector(`.book[data-order-loc="${readToggle.dataset.orderLoc}"]`);
-    bookElement.classList.toggle("not-read");
     bookElement.classList.toggle("read");
+    readToggle.classList.toggle("read-toggle-icon-checked");
 }
 /*--VIEW END--*/

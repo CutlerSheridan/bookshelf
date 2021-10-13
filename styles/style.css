@@ -2,6 +2,7 @@
     --clr-pri: rgb(117, 47, 15);
     --clr-pri-light: rgb(153, 72, 35);
     --clr-sec: rgb(255, 217, 0);
+    --clr-sec-nums: 255,217,0;
     --shelf-height: 17rem;
     --book-height: 15rem;
     --book-gap: 1rem;
@@ -52,6 +53,7 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 1000;
     background: rgba(0,0,0,.3);
     transition: all .2s;
 }
@@ -131,6 +133,7 @@ button[type="submit"] {
 
 /*--BOOK START--*/
 .book {
+    position: relative;
     width: 10rem;
     height: var(--book-height);
     display: flex;
@@ -139,7 +142,12 @@ button[type="submit"] {
     justify-content: center;
     align-items: center;
     text-align: center;
-    border-radius: .3rem;
+    border-radius: .5rem;
+    background: red;
+    transition: background-color .1s;
+}
+.book:hover {
+    border: .2rem solid var(--clr-sec);
 }
 .title {
     font-size: 2rem;
@@ -158,31 +166,33 @@ button[type="submit"] {
 .read {
     background: green;
 }
-.not-read {
-    background: red;
-}
 /*--BOOK END--*/
 
 /*--BOOK CONTROLS START--*/
 .book-controls {
-    position: relative;
+    position: absolute;
     bottom: 0;
     opacity: 0;
     display: flex;
     align-items: center;
     width: 100%;
     height: 3rem;
-    background: purple;
 }
 .book:hover .book-controls {
-    opacity: 100;
-    background: pink;
+    opacity: 1;
+    background: rgba(var(--clr-sec-nums), .75);
+    border-radius: .5rem;
 }
 .read-toggle {
-    width: 2rem;
-    height: 2rem;
+    visibility: hidden;
 }
-.read-toggle:checked {
-
+.read-toggle-icon {
+    text-align: center;
+    color: grey;
+    /* this makes the icon unselectable */
+    user-select: none;
+}
+.read-toggle-icon-checked {
+    color: white;
 }
 /*--BOOK CONTROLS END--*/

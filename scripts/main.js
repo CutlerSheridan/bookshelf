@@ -44,7 +44,6 @@ addBookButton.addEventListener("click", clearAndDisplayAddBookScreen);
 const addBookScreen = document.querySelector(".form-container");
 const bookForm = document.getElementById("book-form");
 
-
 function clearAndDisplayAddBookScreen(e) {
     e.preventDefault();
     bookForm.reset();
@@ -70,7 +69,6 @@ function implementFormOutskirtClickBehavior(e) {
         toggleAddBookScreenVisibility();
     }
 }
-
 bookForm.addEventListener("submit", createBookFromForm);
 function createBookFromForm(e) {
     e.preventDefault();
@@ -91,9 +89,34 @@ function createBookFromForm(e) {
     updateBooksDisplay();
     toggleAddBookScreenVisibility();
 }
+
+const clearButton = document.querySelector("#clear-shelves-button");
+clearButton.addEventListener("click", clearConfirmPrompt, {once: true});
+function clearConfirmPrompt() {
+    clearButton.textContent = "Are you sure?";
+    clearButton.addEventListener("click", confirmedClear, {once: true});
+}
+function confirmedClear() {
+    clearButton.textContent = "Clear shelves";
+    myBookshelf = [];
+    updateBooksDisplay();
+    clearButton.addEventListener("click", clearConfirmPrompt, {once: true});
+}
 function sortBooks(sortMethod) {
     // actual sorting logic here
-
+}
+function deleteBook(deleteButton) {
+    const loc = deleteButton.dataset.orderLoc;
+    myBookshelf.splice(loc, 1);
+    updateBooksDisplay();
+}
+function clearShelves() {
+    const shelves = document.querySelectorAll(".shelves");
+    shelves.forEach(shelf => {
+        const booksOnShelf = document.createRange();
+        booksOnShelf.selectNodeContents(shelf);
+        booksOnShelf.deleteContents();
+    });
 }
 /*--CONTROL END--*/
 
@@ -113,14 +136,8 @@ function updateBooksDisplay() {
 
     const allReadToggles = document.querySelectorAll(".read-toggle-icon");
     allReadToggles.forEach(readToggle => readToggle.addEventListener("click", () => toggleReadStyle(readToggle)));
-}
-function clearShelves() {
-    const shelves = document.querySelectorAll(".shelves");
-    shelves.forEach(shelf => {
-        const booksOnShelf = document.createRange();
-        booksOnShelf.selectNodeContents(shelf);
-        booksOnShelf.deleteContents();
-    });
+    const allDeleteButtons = document.querySelectorAll(".delete-icon");
+    allDeleteButtons.forEach(deleteButton => deleteButton.addEventListener("click", () => deleteBook(deleteButton)));
 }
 function createBookElement(book) {
     const bookIndex = myBookshelf.indexOf(book);
@@ -162,7 +179,14 @@ function createBookElement(book) {
     readToggleIconSpan.classList.add("material-icons-outlined");
     readToggleIconSpan.textContent = "check_circle_outlined";
     readToggleIconLabel.append(readToggleIconSpan);
-    bookControls.append(...[readToggle, readToggleIconLabel]);
+    const deleteBookIconDiv = document.createElement("div");
+    deleteBookIconDiv.dataset.orderLoc = bookIndex;
+    deleteBookIconDiv.classList.add("delete-icon");
+    const deleteBookIconSpan = document.createElement("span");
+    deleteBookIconSpan.classList.add("material-icons-outlined");
+    deleteBookIconSpan.textContent = "close_outlined";
+    deleteBookIconDiv.append(deleteBookIconSpan);
+    bookControls.append(...[readToggle, readToggleIconLabel, deleteBookIconDiv]);
     console.log(readToggle, readToggleIconLabel);
 
     //const bookInfo = [bookTitle, titleUnderline, bookAuthor, bookPages, bookControls];

@@ -1,24 +1,21 @@
 # A bookshelf
 
 #### TO-DO NEXT
-- add hover button to remove from bookshelf
+- change color of books
 
 #### TO-DO LATER
 ###### Features
-- wire "remove book" button
-- add "clear shelf" button to menu bar
 - add sorting capability
     - sort them different ways (alphabetical titles, author first name, last name, page count, read/not read) -- to do this, maybe create a global int variable for currentSortMethod with a function that organizes myBookshelf and re-populates display based on that variable 
         - createNewBook would have to account for this -- actually it should automatically if "New Book" just pushes book onto array, sorts it, then calls updateBooksDisplay()
     - sort multiple ways at once?
-    - how to make things draggable?  not necessary but interesting question
+- how to make things draggable?  not necessary but interesting question
+- add ability to only show read or unread books?
 ###### Behavior
 - start with x(3?) shelves then add more as needed
 - figure out why the books will go like 6px into the right padding
 - focus on title field upon pressing "add book"
 ###### Style
-- adjust placement of icons on book controls bar
-- change color of books
 - add signifier for which book was just added; maybe an outline that dissipates
 - figure out what read vs. unread should look like (or do they need to look different?  Maybe it only shows you this when you hover over a book?)
 - add max- and min-width to books
@@ -32,6 +29,11 @@
 (fuck should i just redo all the shelves with flex or is it worth the facility of having the shelf underlines in their proper, exact places?)
 
 ##### DONE
+- *v0.6.0*
+- add "clear shelf" button to menu bar + wire
+- wire "remove book" button
+- make book controls prettier
+- add hover button to remove book from bookshelf
 - *v0.5.01*
 - add hover border around books
 - round corners of book controls

@@ -1,9 +1,12 @@
 :root {
-    --clr-pri: rgb(117, 47, 15);
-    --clr-pri-light: rgb(153, 72, 35);
+    --clr-pri: rgb(77, 31, 10);
+    --clr-pri-nums: 77,31,10;
+    --clr-pri-light: rgb(117,47,15);
+    --clr-pri-light-nums: 117,47,15;
     --clr-sec: rgb(255, 217, 0);
     --clr-sec-nums: 255,217,0;
     --clr-sec-dark: rgb(235, 199, 0);
+    --clr-sec-light: rgb(255, 239, 151);
     --shelf-height: 17rem;
     --book-height: 15rem;
     --book-gap: 1rem;
@@ -147,7 +150,7 @@ button[type="submit"] {
     align-items: center;
     text-align: center;
     border-radius: .5rem;
-    background: red;
+    background: linear-gradient(to right, rgb(165, 1, 1), red 30%, red 70%, rgb(165, 1, 1));
     transition: background-color .1s;
 }
 .book:hover {
@@ -159,7 +162,8 @@ button[type="submit"] {
 .title-underline {
     width: 75%;
     margin: .8rem 0 1.5rem 0;
-    color: beige;
+    border: 1px solid var(--clr-pri-light);
+    border-radius: .5rem;
 }
 .author {
     font-size: 1.4rem;
@@ -168,14 +172,14 @@ button[type="submit"] {
     font-size: 1.2rem;
 }
 .read {
-    background: green;
+
 }
 /*--BOOK END--*/
 
 /*--BOOK CONTROLS START--*/
 .book-controls {
     position: absolute;
-    bottom: 0;
+    bottom: -.2rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -184,10 +188,11 @@ button[type="submit"] {
     height: 3rem;
     text-align: center;
     opacity: 0;
+    overflow: hidden;
 }
 .book:hover .book-controls {
     opacity: 1;
-    background: rgba(var(--clr-sec-nums), .8);
+    background: rgba(var(--clr-sec-nums), .85);
     border-radius: .5rem;
 }
 .read-toggle {
@@ -198,18 +203,20 @@ button[type="submit"] {
     color: white;
     /* this makes the icon unselectable */
     user-select: none;
+    overflow: hidden;
 }
 .read-toggle-icon:hover {
     color: darkgrey;
 }
 .read-toggle-icon-checked,
 .read-toggle-icon-checked:hover {
-    color: greenyellow;
+    color: rgb(84, 124, 23);
 }
 .delete-icon {
     width: 2.2rem;
     color: white;
     user-select: none;
+    overflow: hidden;
 }
 .delete-icon:hover {
     color: red;

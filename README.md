@@ -1,10 +1,10 @@
 # A bookshelf
 
 #### TO-DO NEXT
-- change color of books
 
 #### TO-DO LATER
 ###### Features
+- store user's data in localStorage
 - add sorting capability
     - sort them different ways (alphabetical titles, author first name, last name, page count, read/not read) -- to do this, maybe create a global int variable for currentSortMethod with a function that organizes myBookshelf and re-populates display based on that variable 
         - createNewBook would have to account for this -- actually it should automatically if "New Book" just pushes book onto array, sorts it, then calls updateBooksDisplay()
@@ -18,6 +18,7 @@
 ###### Style
 - add signifier for which book was just added; maybe an outline that dissipates
 - figure out what read vs. unread should look like (or do they need to look different?  Maybe it only shows you this when you hover over a book?)
+- create three (red, green, and blue) color combos for books and randomly assign one to each book object upon creation
 - add max- and min-width to books
 - handle long titles/authors
     - shorten author and title names by abbreviating probably
@@ -29,6 +30,9 @@
 (fuck should i just redo all the shelves with flex or is it worth the facility of having the shelf underlines in their proper, exact places?)
 
 ##### DONE
+- *v0.6.01*
+- figure out why the fuck google's icons are displaying with a width of the words used to summon them (e.g. the "X" icon is as wide as "close_outlined" would be)
+- change color of books
 - *v0.6.0*
 - add "clear shelf" button to menu bar + wire
 - wire "remove book" button

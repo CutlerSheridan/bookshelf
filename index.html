@@ -12,7 +12,13 @@
         <h1 class="site-title">Shelved</h1>
         <div class="btns-container">
             <button class="header-btn" id="add-book-button">Add a book</button>
-            <button class="header-btn">Sort</button>
+            <div class="sort-container">
+                <p class="sort-label">Sort:</p>
+                <button class="sort-btn sort-btn-unselected" value="title">Title</button>
+                <button class="sort-btn sort-btn-unselected" value="author">Author</button>
+                <button class="sort-btn sort-btn-unselected" value="pages">Pages</button>
+                <button class="sort-btn sort-btn-unselected" value="hasRead">Read or not</button>
+            </div>
             <button class="header-btn" id="clear-shelves-button">Clear shelves</button>
         </div>
     </header>

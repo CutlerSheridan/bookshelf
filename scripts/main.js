@@ -17,6 +17,7 @@ Book.prototype = {
 }
 
 let currentShelf = 0;
+let sortingMethod = "default";
 
 const dune = new Book("Dune", "Frank Herbert", 798, true);
 const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 366, true);
@@ -36,6 +37,7 @@ function addBookToBookshelf(...books) {
     });
 }
 updateBooksDisplay();
+console.log(myBookshelf);
 /*--MODEL END--*/
 
 /*--CONTROL START--*/
@@ -83,9 +85,6 @@ function createBookFromForm(e) {
         newPageCount.value,
         newHasRead.checked
     );
-    //
-    // sorting logic here
-    //
     updateBooksDisplay();
     toggleAddBookScreenVisibility();
 }
@@ -102,9 +101,6 @@ function confirmedClear() {
     updateBooksDisplay();
     clearButton.addEventListener("click", clearConfirmPrompt, {once: true});
 }
-function sortBooks(sortMethod) {
-    // actual sorting logic here
-}
 function deleteBook(deleteButton) {
     const loc = deleteButton.dataset.orderLoc;
     myBookshelf.splice(loc, 1);
@@ -118,6 +114,54 @@ function clearShelves() {
         booksOnShelf.deleteContents();
     });
 }
+
+const sortBtns = document.querySelectorAll(".sort-btn");
+sortBtns.forEach(btn => btn.addEventListener("click", (e) => sortBtnPress(e.target)));
+function sortBtnPress(sortBtn) {
+    if (sortingMethod === sortBtn.value) {
+        sortingMethod = `${sortBtn.value}Reversed`;
+    } else {
+        sortingMethod = sortBtn.value;
+    }
+    sortBtns.forEach(btn => btn.classList.add("sort-btn-unselected"));
+    sortBtn.classList.remove("sort-btn-unselected");
+    updateBooksDisplay();
+}
+function sortBooks() {
+    switch(sortingMethod) {
+        case "author":
+            myBookshelf.sort((x, y) => {
+                const xAuthorArray = x.author.split(" ");
+                const xLast = xAuthorArray[xAuthorArray.length - 1];
+                const yAuthorArray = y.author.split(" ");
+                const yLast = yAuthorArray[yAuthorArray.length - 1];
+                return xLast > yLast ? 1 : -1;
+            });
+            break;
+        case "authorReversed":
+            myBookshelf.sort((x, y) => {
+                const xAuthorArray = x.author.split(" ");
+                const xLast = xAuthorArray[xAuthorArray.length - 1];
+                const yAuthorArray = y.author.split(" ");
+                const yLast = yAuthorArray[yAuthorArray.length - 1];
+                return xLast > yLast ? -1 : 1;
+            });
+            break;
+        case "title":
+        case "hasRead":
+        case "pages":
+            myBookshelf.sort((x, y) => x[sortingMethod] > y[sortingMethod] ? 1 : -1);
+            break;
+        case "titleReversed":
+        case "hasReadReversed":
+        case "pagesReversed":
+            const sortingRoot = sortingMethod.slice(0, sortingMethod.indexOf("Reversed"));
+            myBookshelf.sort((x, y) => x[sortingRoot] > y[sortingRoot] ? -1 : 1);
+            break;
+        default:
+            return;
+    }
+}
 /*--CONTROL END--*/
 
 /*--VIEW START--*/
@@ -126,6 +170,7 @@ window.addEventListener("resize", updateBooksDisplay);
 function updateBooksDisplay() {
     currentShelf = 0;
     clearShelves();
+    sortBooks();
     //myBookshelf.forEach(book => createBookElement(book));
     for (let i = 0; i < myBookshelf.length; i++) {
         const newBookElement = createBookElement(myBookshelf[i]);
@@ -187,7 +232,6 @@ function createBookElement(book) {
     deleteBookIconSpan.textContent = "close_outlined";
     deleteBookIconDiv.append(deleteBookIconSpan);
     bookControls.append(...[readToggle, readToggleIconLabel, deleteBookIconDiv]);
-    console.log(readToggle, readToggleIconLabel);
 
     //const bookInfo = [bookTitle, titleUnderline, bookAuthor, bookPages, bookControls];
     bookElement.append(...[bookTitle, titleUnderline, bookAuthor, bookPages, bookControls]);

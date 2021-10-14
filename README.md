@@ -1,14 +1,12 @@
 # A bookshelf
 
 #### TO-DO NEXT
+- add up/down arrows to sort btns
 
 #### TO-DO LATER
 ###### Features
 - store user's data in localStorage
-- add sorting capability
-    - sort them different ways (alphabetical titles, author first name, last name, page count, read/not read) -- to do this, maybe create a global int variable for currentSortMethod with a function that organizes myBookshelf and re-populates display based on that variable 
-        - createNewBook would have to account for this -- actually it should automatically if "New Book" just pushes book onto array, sorts it, then calls updateBooksDisplay()
-    - sort multiple ways at once?
+- sort multiple ways at once?
 - how to make things draggable?  not necessary but interesting question
 - add ability to only show read or unread books?
 ###### Behavior
@@ -27,9 +25,14 @@
 ###### Other
 - add genres?
 
-(fuck should i just redo all the shelves with flex or is it worth the facility of having the shelf underlines in their proper, exact places?)
-
 ##### DONE
+- *v0.7.0*
+- sort them different ways (alphabetical titles, author first name, last name, page count, read/not read) -- to do this, maybe create a global int variable for currentSortMethod with a function that organizes myBookshelf and re-populates display based on that variable
+- fix sort so every call to updateBooksDisplay() doesn't reverse the current sort
+- add pages sort
+- add sorting capability 
+- add sorting options to header
+- change color of books
 - *v0.6.01*
 - figure out why the fuck google's icons are displaying with a width of the words used to summon them (e.g. the "X" icon is as wide as "close_outlined" would be)
 - change color of books

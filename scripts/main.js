@@ -37,7 +37,6 @@ function addBookToBookshelf(...books) {
     });
 }
 updateBooksDisplay();
-console.log(myBookshelf);
 /*--MODEL END--*/
 
 /*--CONTROL START--*/

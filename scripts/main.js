@@ -147,11 +147,23 @@ function sortBooks() {
             });
             break;
         case "title":
+            myBookshelf.sort((x, y) => {
+                const xTitle = removeTheForSorting(x);
+                const yTitle = removeTheForSorting(y);
+                return xTitle > yTitle ? 1 : -1;
+            });
+            break;
         case "hasRead":
         case "pages":
             myBookshelf.sort((x, y) => x[sortingMethod] > y[sortingMethod] ? 1 : -1);
             break;
         case "titleReversed":
+            myBookshelf.sort((x, y) => {
+                const xTitle = removeTheForSorting(x);
+                const yTitle = removeTheForSorting(y);
+                return xTitle > yTitle ? -1 : 1;
+            });
+            break;
         case "hasReadReversed":
         case "pagesReversed":
             const sortingRoot = sortingMethod.slice(0, sortingMethod.indexOf("Reversed"));
@@ -160,6 +172,17 @@ function sortBooks() {
         default:
             return;
     }
+}
+function removeTheForSorting(book) {
+    let newTitle = book.title;
+    if (newTitle.toLowerCase().indexOf("the") === 0) {
+        newTitle = book.title.split(" ");
+        newTitle.splice(0, 1);
+        console.log(newTitle);
+        newTitle.push(", The");
+    }
+    console.log(newTitle.toString());
+    return newTitle.toString();
 }
 /*--CONTROL END--*/
 

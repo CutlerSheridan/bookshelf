@@ -26,6 +26,10 @@
 - add genres?
 
 ##### DONE
+- *v0.7.01*
+- add viewport scale tag
+- make header sec color and buttons pri
+- make "sort by titles" ignore "the" for alphabetizing
 - *v0.7.0*
 - sort them different ways (alphabetical titles, author first name, last name, page count, read/not read) -- to do this, maybe create a global int variable for currentSortMethod with a function that organizes myBookshelf and re-populates display based on that variable
 - fix sort so every call to updateBooksDisplay() doesn't reverse the current sort

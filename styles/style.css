@@ -3,8 +3,8 @@
     --clr-pri-nums: 77,31,10;
     --clr-pri-light: rgb(117,47,15);
     --clr-pri-light-nums: 117,47,15;
-    --clr-sec: rgb(255, 217, 0);
-    --clr-sec-nums: 255,217,0;
+    --clr-sec: rgb(255, 204, 20);
+    --clr-sec-nums: 255,204,20;
     --clr-sec-dark: rgb(233, 159, 0);
     --clr-sec-light: rgb(255, 239, 151);
     --shelf-height: 17rem;
@@ -29,21 +29,24 @@ header {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    background: var(--clr-sec);
 }
 .site-title {
     font-family: 'Times New Roman', Times, serif;
     font-size: 5rem;
+    color: var(--clr-pri);
 }
 .btns-container {
     display: flex;
     gap: 1rem;
 }
 .header-btn {
-    background: var(--clr-sec);
     padding: 1rem;
     font-size: 2rem;
     border: none;
     border-radius: .3rem;
+    color: white;
+    background: var(--clr-pri);
 }
 .header-btn:hover {
     background: var(--clr-sec-dark);
@@ -55,21 +58,24 @@ header {
 }
 .sort-label {
     font-size: 2rem;
-    color: var(--clr-sec);
+    color: var(--clr-pri);
 }
 .sort-btn {
     padding: .5rem;
     font-size: 1.7rem;
     color: white;
     background: var(--clr-pri);
-    border: .2rem solid var(--clr-sec);
+    border: none;
     border-radius: .3rem;
 }
 .sort-btn-unselected {
+    color: var(--clr-pri);
     background: transparent;
+    border: .2rem solid var(--clr-pri);
 }
 .sort-btn-unselected:hover {
     background: rgba(22, 22, 22, .2);
+    background: var(--clr-sec-dark);
 }
 /*--HEADER END--*/
 

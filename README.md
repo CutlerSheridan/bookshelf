@@ -1,11 +1,10 @@
 # A bookshelf
 
 #### TO-DO NEXT
-- add up/down arrows to sort btns
+- store user's data in localStorage
 
 #### TO-DO LATER
 ###### Features
-- store user's data in localStorage
 - sort multiple ways at once?
 - how to make things draggable?  not necessary but interesting question
 - add ability to only show read or unread books?
@@ -14,6 +13,7 @@
 - figure out why the books will go like 6px into the right padding
 - focus on title field upon pressing "add book"
 ###### Style
+- add up/down arrows to sort btns
 - add signifier for which book was just added; maybe an outline that dissipates
 - figure out what read vs. unread should look like (or do they need to look different?  Maybe it only shows you this when you hover over a book?)
 - create three (red, green, and blue) color combos for books and randomly assign one to each book object upon creation
@@ -26,6 +26,10 @@
 - add genres?
 
 ##### DONE
+-*v0.7.02*
+- make sort arrow indicate if current sort is forward or backward
+- add up/down arrows next to "Sort"
+- change color palette
 - *v0.7.01*
 - add viewport scale tag
 - make header sec color and buttons pri

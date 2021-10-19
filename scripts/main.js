@@ -153,16 +153,16 @@ function sortBooks() {
                 return xTitle > yTitle ? 1 : -1;
             });
             break;
-        case "hasRead":
-        case "pages":
-            myBookshelf.sort((x, y) => x[sortingMethod] > y[sortingMethod] ? 1 : -1);
-            break;
         case "titleReversed":
             myBookshelf.sort((x, y) => {
                 const xTitle = removeTheForSorting(x);
                 const yTitle = removeTheForSorting(y);
                 return xTitle > yTitle ? -1 : 1;
             });
+            break;
+        case "hasRead":
+        case "pages":
+            myBookshelf.sort((x, y) => x[sortingMethod] > y[sortingMethod] ? 1 : -1);
             break;
         case "hasReadReversed":
         case "pagesReversed":
@@ -171,6 +171,12 @@ function sortBooks() {
             break;
         default:
             return;
+    }
+    const sortArrow = document.getElementById("sort-label-icon");
+    if (sortingMethod.indexOf("Reversed") != -1) {
+        sortArrow.textContent = "north";
+    } else {
+        sortArrow.textContent = "south";
     }
 }
 function removeTheForSorting(book) {

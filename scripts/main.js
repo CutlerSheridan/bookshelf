@@ -21,7 +21,7 @@ let sortingMethod = "default";
 
 const dune = new Book("Dune", "Frank Herbert", 798, true);
 const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 366, true);
-const hp4 = new Book("Harry Potter and the Goblet-of Fire", "J.K. Rowling", 73.4, true);
+const hp4 = new Book("Harry Potter and the Goblet of Fire", "J.K. Rowling", 734, true);
 const theStand = new Book("The Stand", "Stephen King", 1152, false);
 const pps = new Book("Perdido Street Station", "China Miéville", 710, true);
 const later = new Book("Later", "Stephen King", 248, true);
@@ -209,7 +209,7 @@ function updateBooksDisplay() {
         const titleWidth = parseInt(getComputedStyle(newBookTitle).width);
         console.log(newBookTitle.textContent + bookWidth);
         if (titleWidth > bookWidth) {
-            shortenText(newBookTitle);
+            shortenText(newBookTitle, newBookElement);
         }
         const newBookAuthor = document.querySelector(`.book[data-order-loc="${i}"] > .author`);
         const authorWidth = parseInt(getComputedStyle(newBookAuthor).width);
@@ -223,11 +223,24 @@ function updateBooksDisplay() {
     const allDeleteButtons = document.querySelectorAll(".delete-icon");
     allDeleteButtons.forEach(deleteButton => deleteButton.addEventListener("click", () => deleteBook(deleteButton)));
 }
-function shortenText(bookTextElement) {
+function shortenText(bookTextElement, bookElement) {
     bookTextElement.title = bookTextElement.textContent;
     const newTextArray = bookTextElement.textContent.replace("."," ").split(/-| /);
-    console.table(newTextArray);
     bookTextElement.textContent = newTextArray.map(word => word.charAt(0) + ".").join(bookTextElement.classList.contains("title") ? " " : "");
+    
+    if (arguments.length > 1) {
+        const titleStyle = getComputedStyle(bookTextElement);
+        const bookHeight = parseInt(getComputedStyle(bookElement).height);
+        let titleHeight = parseInt(titleStyle.height);
+        let titleFontSize = parseInt(titleStyle.fontSize) / 10;
+        let counter = 0;
+        while (titleHeight > bookHeight / 2) {
+            titleFontSize -= .25;
+            bookTextElement.style.fontSize = `${titleFontSize}rem`;
+            titleHeight = parseInt(getComputedStyle(bookTextElement).height);
+            console.log(++counter, titleFontSize);
+        }
+    }
 }
 function createBookElement(book) {
     const bookIndex = myBookshelf.indexOf(book);
@@ -283,12 +296,6 @@ function createBookElement(book) {
 
     //const bookInfo = [bookTitle, titleUnderline, bookAuthor, bookPages, bookControls];
     bookElement.append(...[bookTitle, titleUnderline, bookAuthor, bookPages, bookControls]);
-
-    /*const bookStyle = getComputedStyle(bookElement);
-    console.log(parseInt(bookStyle.width));
-    const titleStyle = getComputedStyle(bookTitle);
-    console.log(titleStyle);*/
-    
     return bookElement;
 }
 function calculateCurrentShelf(newBookWidth) {

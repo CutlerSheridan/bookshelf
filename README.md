@@ -1,10 +1,11 @@
 # A bookshelf
 
 #### TO-DO NEXT
-- store user's data in localStorage
+- program height of titles to auto-adjust if abbreviating isn't enough and the text gets too tall
 
 #### TO-DO LATER
 ###### Features
+- store user's data in localStorage
 - sort multiple ways at once?
 - how to make things draggable?  not necessary but interesting question
 - add ability to only show read or unread books?
@@ -12,20 +13,21 @@
 - start with x(3?) shelves then add more as needed
 - figure out why the books will go like 6px into the right padding
 - focus on title field upon pressing "add book"
+- try (on a new branch) switching to a flex?
 ###### Style
-- add up/down arrows to sort btns
 - add signifier for which book was just added; maybe an outline that dissipates
 - figure out what read vs. unread should look like (or do they need to look different?  Maybe it only shows you this when you hover over a book?)
 - create three (red, green, and blue) color combos for books and randomly assign one to each book object upon creation
 - add max- and min-width to books
-- handle long titles/authors
-    - shorten author and title names by abbreviating probably
-    - add popup on hover for shortened info of narrow books
 - add credit
 ###### Other
 - add genres?
 
 ##### DONE
+-*v0.7.03*
+- make abbreviated titles have spaces between letters but not abbreviated authors
+- add popup on hover for shortened info of narrow books
+- shorten author and title names by abbreviating
 -*v0.7.02*
 - make sort arrow indicate if current sort is forward or backward
 - add up/down arrows next to "Sort"

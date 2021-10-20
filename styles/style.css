@@ -88,11 +88,12 @@ header {
     background: rgba(22, 22, 22, .2);
 }
 #clear-shelves-button {
-    width: 14rem;
+    width: 11rem;
     margin-left: 1rem;
     padding: 0;
+    font-size: 1.7rem;
     background: transparent;
-    border-bottom: .3rem solid var(--clr-white);
+    border-bottom: .2rem solid var(--clr-white);
     border-radius: 0;
 }
 #clear-shelves-button:hover {
@@ -214,7 +215,7 @@ button[type="submit"]:active {
     --clr-book-light: rgb(204,41,57);
     --clr-book-dark: rgb(128,25,26);
     position: relative;
-    width: 10rem;
+    min-width: 4.75rem;
     height: var(--book-height);
     display: flex;
     flex-direction: column;

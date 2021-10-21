@@ -22,6 +22,9 @@
 - add genres?
 
 ##### DONE
+- *v0.7.05*
+- adjust style
+- improve text-abbreviating function
 - *v0.7.04*
 - add min-width to books
 - program height of titles to auto-adjust if abbreviating isn't enough and the text gets too tall

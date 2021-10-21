@@ -207,7 +207,6 @@ function updateBooksDisplay() {
         const bookWidth = parseInt(getComputedStyle(newBookElement).width);
         const newBookTitle = document.querySelector(`.book[data-order-loc="${i}"] > .title`);
         const titleWidth = parseInt(getComputedStyle(newBookTitle).width);
-        console.log(newBookTitle.textContent + bookWidth);
         if (titleWidth > bookWidth) {
             shortenText(newBookTitle, newBookElement);
         }
@@ -225,20 +224,18 @@ function updateBooksDisplay() {
 }
 function shortenText(bookTextElement, bookElement) {
     bookTextElement.title = bookTextElement.textContent;
-    const newTextArray = bookTextElement.textContent.replace("."," ").split(/-| /);
-    bookTextElement.textContent = newTextArray.map(word => word.charAt(0) + ".").join(bookTextElement.classList.contains("title") ? " " : "");
+    const newTextArray = bookTextElement.textContent.split(/-| |\./);
+    bookTextElement.textContent = newTextArray.map(word => word ? word.charAt(0) + "." : "").join(bookTextElement.classList.contains("title") ? " " : "");
     
     if (arguments.length > 1) {
         const titleStyle = getComputedStyle(bookTextElement);
         const bookHeight = parseInt(getComputedStyle(bookElement).height);
         let titleHeight = parseInt(titleStyle.height);
         let titleFontSize = parseInt(titleStyle.fontSize) / 10;
-        let counter = 0;
         while (titleHeight > bookHeight / 2) {
             titleFontSize -= .25;
             bookTextElement.style.fontSize = `${titleFontSize}rem`;
             titleHeight = parseInt(getComputedStyle(bookTextElement).height);
-            console.log(++counter, titleFontSize);
         }
     }
 }
@@ -255,7 +252,7 @@ function createBookElement(book) {
     const bookTitle = document.createElement("div");
     bookTitle.classList.add("title");
     bookTitle.textContent = book.title;
-    const titleUnderline = document.createElement("hr");
+    const titleUnderline = document.createElement("div");
     titleUnderline.classList.add("title-underline");
     const bookAuthor = document.createElement("div");
     bookAuthor.classList.add("author");

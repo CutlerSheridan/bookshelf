@@ -4,12 +4,16 @@
     --clr-pri-light: rgb(117,47,15);
     --clr-pri-light-nums: 117,47,15;
     --clr-pri-dark: rgb(56, 23, 7);
-    --clr-sec-nums: 34,128,56;
-    --clr-sec: rgb(var(--clr-sec-nums));
-    --clr-sec-dark-nums: 17,64,28;
-    --clr-sec-dark: rgb(17, 64, 28);
-    --clr-sec-light: rgb(52,191,84);
+    --clr-sec-nums: 128,25,26;
+    --clr-sec: rgb(128,25,26);
+    --clr-sec-dark-nums: 97,19,20;
+    --clr-sec-dark: rgb(97,19,20);
+    --clr-sec-light: rgb(187,43,58);
     --clr-white: rgb(230, 230, 230);
+    --clr-book-light: rgb(187, 43, 58);
+    --clr-book-dark: rgb(128,25,26);
+    --clr-book-darker: rgb(97, 19, 20);
+
     --shelf-height: 17rem;
     --book-height: 15rem;
     --book-gap: 1rem;
@@ -32,7 +36,7 @@ header {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background: var(--clr-sec);
+    background: var(--clr-pri-dark);
 }
 .site-title {
     font-family: 'Times New Roman', Times, serif;
@@ -50,13 +54,13 @@ header {
     border: none;
     border-radius: .3rem;
     color: var(--clr-white);
-    background: var(--clr-pri);
+    background: var(--clr-sec);
 }
 .header-btn:hover {
-    background: var(--clr-pri-dark);
+    background: var(--clr-sec-dark);
 }
 .header-btn:active {
-    background: var(--clr-pri-light);
+    background: var(--clr-sec-light);
 }
 .sort-container {
     display: flex;
@@ -77,8 +81,8 @@ header {
     padding: .5rem;
     font-size: 1.7rem;
     color: white;
-    background: var(--clr-sec-dark);
-    border: .15rem solid var(--clr-sec-dark);
+    background: var(--clr-sec-light);
+    border: .15rem solid transparent;
     border-radius: .3rem;
 }
 .sort-btn-unselected {
@@ -86,7 +90,11 @@ header {
     border: .15rem solid var(--clr-white);
 }
 .sort-btn-unselected:hover {
-    background: rgba(22, 22, 22, .2);
+    background: var(--clr-sec);
+}
+.sort-btn:active,
+.sort-btn-unselected:active {
+    background: var(--clr-sec-dark);
 }
 #clear-shelves-button {
     width: 11rem;
@@ -150,9 +158,13 @@ form {
     font-size: .9em;
 }
 input {
-    border: .3rem solid var(--clr-pri);
-    border-radius: .2rem;
+    border: .4rem solid transparent;
     background: var(--clr-white);
+    border-radius: .2rem;
+}
+input:focus {
+    outline: none;
+    border-color: var(--clr-pri-light);
 }
 .form-input {
     padding: .5rem;
@@ -214,8 +226,6 @@ button[type="submit"]:active {
 
 /*--BOOK START--*/
 .book {
-    --clr-book-light: rgb(187, 43, 58);
-    --clr-book-dark: rgb(128,25,26);
     position: relative;
     min-width: 4.75rem;
     height: var(--book-height);
@@ -232,7 +242,7 @@ button[type="submit"]:active {
 }
 .book:hover,
 .book:active {
-    border: .2rem solid var(--clr-sec);
+    border: .2rem solid pink;
 }
 .title {
     padding: .2rem;

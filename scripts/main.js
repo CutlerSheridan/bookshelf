@@ -7,14 +7,12 @@ function Book(title, author, pages, hasRead) {
     this.hasRead = hasRead;
     addBookToBookshelf(this);
 }
-Book.prototype = {
-    info: function() {
-        return `${this.title}, by ${this.author}.\n${this.pages} pages long.\n${this.hasRead ? "Read." : "Not read."}`;
-    },
-    toggleReadState: function() {
-        this.hasRead = !this.hasRead;
-    }
-}
+Book.prototype.info = function() {
+    return `${this.title}, by ${this.author}.\n${this.pages} pages long.\n${this.hasRead ? "Read." : "Not read."}`;
+};
+Book.prototype.toggleReadState = function() {
+    this.hasRead = !this.hasRead;
+};
 
 let currentShelf = 0;
 let sortingMethod = "default";
@@ -90,19 +88,29 @@ function createBookFromForm(e) {
 
 const clearButton = document.querySelector("#clear-shelves-button");
 clearButton.addEventListener("click", clearConfirmPrompt, {once: true});
-function clearConfirmPrompt() {
+function clearConfirmPrompt(e) {
     clearButton.textContent = "Are you sure?";
     clearButton.addEventListener("click", confirmedClear, {once: true});
+    e.stopPropagation();
+    window.addEventListener("click", dismissClearPrompt, {once: true});
 }
 function confirmedClear() {
     clearButton.textContent = "Clear shelves";
     myBookshelf = [];
     updateBooksDisplay();
     clearButton.addEventListener("click", clearConfirmPrompt, {once: true});
+    window.removeEventListener("click", dismissClearPrompt, {once: true});
+
+}
+function dismissClearPrompt(e) {
+    if (e.target != clearButton) {
+        clearButton.textContent = "Clear shelves";
+        clearButton.addEventListener("click", clearConfirmPrompt, {once: true});
+        clearButton.removeEventListener("click", confirmedClear, {once: true});
+    }
 }
 function deleteBook(deleteButton) {
-    const loc = deleteButton.dataset.orderLoc;
-    myBookshelf.splice(loc, 1);
+    myBookshelf.splice(deleteButton.dataset.orderLoc, 1);
     updateBooksDisplay();
 }
 function clearShelves() {

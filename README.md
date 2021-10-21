@@ -14,6 +14,7 @@
 - focus on title field upon pressing "add book"
 - try (on a new branch) switching to a flex?
 ###### Style
+- add wood texture to bookshelf?
 - add signifier for which book was just added; maybe an outline that dissipates
 - figure out what read vs. unread should look like (or do they need to look different?  Maybe it only shows you this when you hover over a book?)
 - create three (red, green, and blue) color combos for books and randomly assign one to each book object upon creation
@@ -22,6 +23,9 @@
 - add genres?
 
 ##### DONE
+- *v0.7.06*
+- Dismiss "clear" confirmation message when clicking elsewhere
+- adjust color palette
 - *v0.7.05*
 - adjust style
 - improve text-abbreviating function

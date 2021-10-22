@@ -1,9 +1,10 @@
 :root {
-    --clr-pri: rgb(77, 31, 10);
-    --clr-pri-nums: 77,31,10;
-    --clr-pri-light: rgb(117,47,15);
-    --clr-pri-light-nums: 117,47,15;
+    --clr-pri: rgb(78,39,21);
+    --clr-pri-nums: 78,39,21;
+    --clr-pri-light: rgb(117, 58, 30);
+    --clr-pri-light-nums: 117,58,30;
     --clr-pri-dark: rgb(56, 23, 7);
+    --clr-pri-dark-nums: 56,23,7;
     --clr-sec-nums: 128,25,26;
     --clr-sec: rgb(128,25,26);
     --clr-sec-dark-nums: 97,19,20;
@@ -17,6 +18,8 @@
     --shelf-height: 17rem;
     --book-height: 15rem;
     --book-gap: 1rem;
+
+    min-height: 100%;
     font-size: 62.5%;
 }
 * {
@@ -28,6 +31,7 @@ body {
     height: 100%;
     width: 100%;
     background: var(--clr-pri-light);
+    background: linear-gradient(to bottom, var(--clr-pri-light) 70%, var(--clr-pri-dark));
 }
 
 /*--HEADER START--*/
@@ -164,7 +168,7 @@ input {
 }
 input:focus {
     outline: none;
-    border-color: var(--clr-pri-light);
+    border-color: var(--clr-pri);
 }
 .form-input {
     padding: .5rem;
@@ -242,7 +246,7 @@ button[type="submit"]:active {
 }
 .book:hover,
 .book:active {
-    border: .2rem solid pink;
+    border: .2rem solid var(--clr-pri-dark);
 }
 .title {
     padding: .2rem;
@@ -285,7 +289,7 @@ button[type="submit"]:active {
 .book:hover .book-controls,
 .book:active .book-controls {
     opacity: 1;
-    background: rgba(var(--clr-sec-dark-nums), .9);
+    background: rgba(var(--clr-pri-dark-nums), .9);
     border-radius: .5rem;
 }
 .read-toggle {
@@ -293,7 +297,7 @@ button[type="submit"]:active {
 }
 .read-toggle-icon {
     color: var(--clr-white);
-    /* this makes the icon unselectable */
+    /* this makes the icon unhighlightable */
     user-select: none;
 }
 .read-toggle-icon:hover {

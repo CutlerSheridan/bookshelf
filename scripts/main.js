@@ -29,7 +29,7 @@ const neuromancer = new Book("Neuromancer", "William Gibson", 292, false);
 // this may not need to be a spread if it's only used for singular new books + the constructor
 function addBookToBookshelf(...books) {
     books.forEach(book => {
-        if (!myBookshelf.includes(book)) {
+        if (!myBookshelf.includes(book.title)) {
             myBookshelf.push(book);
         }
     });
@@ -215,12 +215,12 @@ function updateBooksDisplay() {
         const bookWidth = parseInt(getComputedStyle(newBookElement).width);
         const newBookTitle = document.querySelector(`.book[data-order-loc="${i}"] > .title`);
         const titleWidth = parseInt(getComputedStyle(newBookTitle).width);
-        if (titleWidth > bookWidth) {
+        if (titleWidth > bookWidth - 2) {
             shortenText(newBookTitle, newBookElement);
         }
         const newBookAuthor = document.querySelector(`.book[data-order-loc="${i}"] > .author`);
         const authorWidth = parseInt(getComputedStyle(newBookAuthor).width);
-        if (authorWidth > bookWidth) {
+        if (authorWidth > bookWidth - 2) {
             shortenText(newBookAuthor);
         }
     }
@@ -235,18 +235,22 @@ function shortenText(bookTextElement, bookElement) {
     const newTextArray = bookTextElement.textContent.split(/-| |\./);
     bookTextElement.textContent = newTextArray.map(word => word ? word.charAt(0) + "." : "").join(bookTextElement.classList.contains("title") ? " " : "");
     
+    // this checks if it's a title as authors don't get smaller
     if (arguments.length > 1) {
-        const titleStyle = getComputedStyle(bookTextElement);
+        const textStyle = getComputedStyle(bookTextElement);
         const bookHeight = parseInt(getComputedStyle(bookElement).height);
-        let titleHeight = parseInt(titleStyle.height);
-        let titleFontSize = parseInt(titleStyle.fontSize) / 10;
-        while (titleHeight > bookHeight / 2) {
+        let textHeight = parseInt(textStyle.height);
+        let titleFontSize = parseInt(textStyle.fontSize) / 10;
+        while (textHeight > bookHeight / 2) {
             titleFontSize -= .25;
             bookTextElement.style.fontSize = `${titleFontSize}rem`;
-            titleHeight = parseInt(getComputedStyle(bookTextElement).height);
+            textHeight = parseInt(getComputedStyle(bookTextElement).height);
         }
     }
 }
+/*function shrinkText(bookTextElement, bookElement, useLoop = false) {
+
+}*/
 function createBookElement(book) {
     const bookIndex = myBookshelf.indexOf(book);
 
@@ -311,26 +315,37 @@ function calculateCurrentShelf(newBookWidth) {
     const bookGap = parseInt(shelfStyle.gap);
 
     for (let i = currentShelf; i < shelves.length; i++) {
-        const booksOnShelf = document.querySelectorAll(`.shelf${i} > *`);
+        const booksOnShelf = document.querySelectorAll(`.shelf${i} > .book`);
         let booksOnShelfWidth = 0;
         let booksGapSum = 0;
         booksOnShelf.forEach(bookElement => {
             const bookWidth = parseInt(getComputedStyle(bookElement).width);
             booksOnShelfWidth += bookWidth;
         });
-
         if (booksOnShelf.length > 1) {
             booksGapSum = bookGap * (booksOnShelf.length - 1);
         }
-        /*console.log(`shelf width: ${shelfWidth}`);
-        console.log(`booksOnShelfWidth: ${booksOnShelfWidth}`);
-        console.log(`newBookWidth: ${newBookWidth}`);*/
-        if (newBookWidth < (shelfWidth - (booksOnShelfWidth + booksGapSum))) {
+
+        if (newBookWidth < (shelfWidth - (booksOnShelfWidth + booksGapSum + bookGap))) {
+            currentShelf = i;
+            if (shelves.length >= i + 1 && shelves.length > 3) {
+                for (let n = i + 1; n < shelves.length; n++) {
+                    document.querySelector(`.shelf${n}`).remove();
+                }
+            }
+            return;
+        } else if (i === shelves.length - 1) {
+            createShelf(++i);
             currentShelf = i;
             return;
         }
     }
     currentShelf = 0;
+}
+function createShelf(loc) {
+    const newShelf = document.createElement("div");
+    newShelf.classList.add("shelves", `shelf${loc}`);
+    document.querySelector(".bookshelf-container").append(newShelf);
 }
 function toggleReadStyle(readToggle) {
     myBookshelf[readToggle.dataset.orderLoc].toggleReadState();

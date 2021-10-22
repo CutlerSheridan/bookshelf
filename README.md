@@ -1,7 +1,6 @@
 # A bookshelf
 
 #### TO-DO NEXT
-- make titles/authors shrink once before abbreviating
 - store user's data in localStorage
 
 #### TO-DO LATER
@@ -22,6 +21,8 @@
 - add genres?
 
 ##### DONE
+- *0.7.08*
+- make titles/authors shrink once before abbreviating, then grow back if abbreviation is still needed, then shrink if the abbreviation is too big
 - *0.7.07*
 - start with x(3?) shelves then add more as needed
 - figure out why the books will go like 6px into the right padding (hadn't accounted for the additional book gap for the new book)

@@ -19,7 +19,7 @@ let sortingMethod = "default";
 
 const dune = new Book("Dune", "Frank Herbert", 798, true);
 const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 366, true);
-const hp4 = new Book("Harry Potter and the Goblet of Fire", "J.K. Rowling", 734, true);
+const hp4 = new Book("Harry Potter and the Goblet of Fire", "J.K. Rowling", 73.4, true);
 const theStand = new Book("The Stand", "Stephen King", 1152, false);
 const pps = new Book("Perdido Street Station", "China Miéville", 710, true);
 const later = new Book("Later", "Stephen King", 248, true);
@@ -212,17 +212,10 @@ function updateBooksDisplay() {
         const shelfToUse = document.querySelector(`.shelf${currentShelf}`);
         shelfToUse.appendChild(newBookElement);
 
-        const bookWidth = parseInt(getComputedStyle(newBookElement).width);
         const newBookTitle = document.querySelector(`.book[data-order-loc="${i}"] > .title`);
-        const titleWidth = parseInt(getComputedStyle(newBookTitle).width);
-        if (titleWidth > bookWidth - 2) {
-            shortenText(newBookTitle, newBookElement);
-        }
+        shortenText(newBookTitle, newBookElement);
         const newBookAuthor = document.querySelector(`.book[data-order-loc="${i}"] > .author`);
-        const authorWidth = parseInt(getComputedStyle(newBookAuthor).width);
-        if (authorWidth > bookWidth - 2) {
-            shortenText(newBookAuthor);
-        }
+        shortenText(newBookAuthor, newBookElement);
     }
 
     const allReadToggles = document.querySelectorAll(".read-toggle-icon");
@@ -231,26 +224,33 @@ function updateBooksDisplay() {
     allDeleteButtons.forEach(deleteButton => deleteButton.addEventListener("click", () => deleteBook(deleteButton)));
 }
 function shortenText(bookTextElement, bookElement) {
-    bookTextElement.title = bookTextElement.textContent;
-    const newTextArray = bookTextElement.textContent.split(/-| |\./);
-    bookTextElement.textContent = newTextArray.map(word => word ? word.charAt(0) + "." : "").join(bookTextElement.classList.contains("title") ? " " : "");
+    const bookWidth = parseInt(getComputedStyle(bookElement).width) - 4;
+    const textStyle = getComputedStyle(bookTextElement);
+
+    if (parseInt(getComputedStyle(bookTextElement).width) > bookWidth) {
+        shrinkText(bookTextElement, textStyle);
+    }
+    if (parseInt(getComputedStyle(bookTextElement).width) > bookWidth) {
+        bookTextElement.style.fontSize = `${parseInt(textStyle.fontSize) / 10 + .25}rem`
+        bookTextElement.title = bookTextElement.textContent;
+        const newTextArray = bookTextElement.textContent.split(/-| |\./);
+        bookTextElement.textContent = newTextArray.map(word => word ? word.charAt(0) + "." : "").join(bookTextElement.classList.contains("title") ? " " : "");
+
+    }
     
-    // this checks if it's a title as authors don't get smaller
-    if (arguments.length > 1) {
-        const textStyle = getComputedStyle(bookTextElement);
+    if (bookTextElement.classList.contains("title")) {
         const bookHeight = parseInt(getComputedStyle(bookElement).height);
         let textHeight = parseInt(textStyle.height);
-        let titleFontSize = parseInt(textStyle.fontSize) / 10;
         while (textHeight > bookHeight / 2) {
-            titleFontSize -= .25;
-            bookTextElement.style.fontSize = `${titleFontSize}rem`;
+            shrinkText(bookTextElement, textStyle);
             textHeight = parseInt(getComputedStyle(bookTextElement).height);
         }
     }
 }
-/*function shrinkText(bookTextElement, bookElement, useLoop = false) {
-
-}*/
+function shrinkText(bookTextElement, textStyle) {
+    const titleFontSize = parseInt(textStyle.fontSize) / 10 - .25;
+    bookTextElement.style.fontSize = `${titleFontSize}rem`;
+}
 function createBookElement(book) {
     const bookIndex = myBookshelf.indexOf(book);
 

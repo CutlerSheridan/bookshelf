@@ -1,5 +1,7 @@
 /*--MODEL START--*/
 let myBookshelf = [];
+myBookshelf.push(...JSON.parse(localStorage.getItem("storedBookshelf")));
+
 function Book(title, author, pages, hasRead) {
     this.title = title;
     this.author = author;
@@ -19,7 +21,7 @@ let sortingMethod = "default";
 
 const dune = new Book("Dune", "Frank Herbert", 798, true);
 const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 366, true);
-const hp4 = new Book("Harry Potter and the Goblet of Fire", "J.K. Rowling", 73.4, true);
+const hp4 = new Book("Harry Potter and the Goblet of Fire", "J.K. Rowling", 734, true);
 const theStand = new Book("The Stand", "Stephen King", 1152, false);
 const pps = new Book("Perdido Street Station", "China Miéville", 710, true);
 const later = new Book("Later", "Stephen King", 248, true);
@@ -27,12 +29,20 @@ const mrNorrell = new Book("Jonathan Strange & Mr. Norrell", "Susanna Clarke", 1
 const neuromancer = new Book("Neuromancer", "William Gibson", 292, false);
 
 // this may not need to be a spread if it's only used for singular new books + the constructor
-function addBookToBookshelf(...books) {
-    books.forEach(book => {
-        if (!myBookshelf.includes(book.title)) {
-            myBookshelf.push(book);
+function addBookToBookshelf(book) {
+    console.log(1);
+    if (isBookNew(book)) {
+        myBookshelf.push(book);
+    }
+}
+function isBookNew(book) {
+    console.log(2);
+    myBookshelf.forEach(b => {
+        if (b.title === book.title && b.author === book.author) {
+            return false;
         }
     });
+    return true;
 }
 updateBooksDisplay();
 /*--MODEL END--*/
@@ -222,6 +232,9 @@ function updateBooksDisplay() {
     allReadToggles.forEach(readToggle => readToggle.addEventListener("click", () => toggleReadStyle(readToggle)));
     const allDeleteButtons = document.querySelectorAll(".delete-icon");
     allDeleteButtons.forEach(deleteButton => deleteButton.addEventListener("click", () => deleteBook(deleteButton)));
+
+    localStorage.setItem("storedBookshelf", JSON.stringify(myBookshelf));
+
 }
 function shortenText(bookTextElement, bookElement) {
     const bookWidth = parseInt(getComputedStyle(bookElement).width) - 4;

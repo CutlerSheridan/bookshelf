@@ -1,7 +1,7 @@
 # A bookshelf
 
 #### TO-DO NEXT
-- store user's data in localStorage
+- prevent bookshelf array from accepting duplicates
 
 #### TO-DO LATER
 ###### Features
@@ -21,6 +21,8 @@
 - add genres?
 
 ##### DONE
+- *0.8.0*
+- store user's data in localStorage
 - *0.7.08*
 - make titles/authors shrink once before abbreviating, then grow back if abbreviation is still needed, then shrink if the abbreviation is too big
 - *0.7.07*

@@ -1,7 +1,7 @@
 # A bookshelf
 
 #### TO-DO NEXT
-- prevent bookshelf array from accepting duplicates
+- choose fonts
 
 #### TO-DO LATER
 ###### Features
@@ -15,12 +15,15 @@
 - add wood texture to bookshelf?
 - add signifier for which book was just added; maybe an outline that dissipates
 - figure out what read vs. unread should look like (or do they need to look different?  Maybe it only shows you this when you hover over a book?)
-- create three (red, green, and blue) color combos for books and randomly assign one to each book object upon creation
+- create three (red, green, and blue) color combos for books and randomly assign one to each book object upon creation?
 - add credit
 ###### Other
 - add genres?
 
 ##### DONE
+- *v0.8.01*
+- make header mobile-friendly
+- prevent bookshelf array from accepting duplicates
 - *0.8.0*
 - store user's data in localStorage
 - *0.7.08*

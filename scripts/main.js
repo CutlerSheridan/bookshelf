@@ -1,7 +1,4 @@
 /*--MODEL START--*/
-let myBookshelf = [];
-myBookshelf.push(...JSON.parse(localStorage.getItem("storedBookshelf")));
-
 function Book(title, author, pages, hasRead) {
     this.title = title;
     this.author = author;
@@ -18,6 +15,8 @@ Book.prototype.toggleReadState = function() {
 
 let currentShelf = 0;
 let sortingMethod = "default";
+let myBookshelf = [];
+myBookshelf.push(...JSON.parse(localStorage.getItem("storedBookshelf")));
 
 const dune = new Book("Dune", "Frank Herbert", 798, true);
 const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 366, true);
@@ -28,23 +27,19 @@ const later = new Book("Later", "Stephen King", 248, true);
 const mrNorrell = new Book("Jonathan Strange & Mr. Norrell", "Susanna Clarke", 1006, true);
 const neuromancer = new Book("Neuromancer", "William Gibson", 292, false);
 
-// this may not need to be a spread if it's only used for singular new books + the constructor
-function addBookToBookshelf(book) {
-    console.log(1);
-    if (isBookNew(book)) {
-        myBookshelf.push(book);
-    }
-}
-function isBookNew(book) {
-    console.log(2);
-    myBookshelf.forEach(b => {
-        if (b.title === book.title && b.author === book.author) {
-            return false;
-        }
-    });
-    return true;
-}
+adjustHeaderStructureForResizing();
 updateBooksDisplay();
+
+function addBookToBookshelf(book) {
+    if (!book) {
+        return;
+    }
+    if (myBookshelf.some(b => b.title === book.title && b.author === book.author)) {
+        return;
+    }
+    myBookshelf.push(book);
+}
+
 /*--MODEL END--*/
 
 /*--CONTROL START--*/
@@ -210,7 +205,20 @@ function removeTheForSorting(book) {
 
 /*--VIEW START--*/
 window.addEventListener("resize", updateBooksDisplay);
+window.addEventListener("resize", adjustHeaderStructureForResizing);
 
+function adjustHeaderStructureForResizing() {
+    const headerBtnsContainer = document.querySelector(".btns-container");
+    const logoContainer = document.querySelector(".logo-container");
+    const sortContainer = document.querySelector(".sort-container");
+
+    headerBtnsContainer.remove();
+    if (window.innerWidth < 760) {
+        logoContainer.append(headerBtnsContainer);
+    } else {
+        sortContainer.prepend(headerBtnsContainer);
+    }
+}
 function updateBooksDisplay() {
     currentShelf = 0;
     clearShelves();

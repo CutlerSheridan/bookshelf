@@ -36,18 +36,39 @@ body {
 
 /*--HEADER START--*/
 header {
-    height: 10rem;
+    min-height: 10rem;
+    padding: 1.5rem 1rem;
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
     background: var(--clr-pri-dark);
 }
+.logo-container {
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1rem;
+
+}
+@media only screen and (min-width: 500px) {
+    .logo-container {
+        gap: 5rem;
+    }
+}
 .site-title {
     font-family: 'Times New Roman', Times, serif;
-    font-size: 5rem;
+    font-size: 3rem;
     color: var(--clr-white);
 }
+@media only screen and (min-width: 450px) {
+    .site-title {
+        font-size: 5rem;
+    }
+}
 .btns-container {
+    margin: auto;
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -67,6 +88,7 @@ header {
     background: var(--clr-sec-light);
 }
 .sort-container {
+    margin: .75rem auto;
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -103,7 +125,6 @@ header {
 #clear-shelves-button {
     width: 11rem;
     height: 3rem;
-    margin-left: 1rem;
     padding: 0;
     font-size: 1.7rem;
     background: transparent;

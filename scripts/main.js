@@ -212,12 +212,12 @@ function adjustHeaderStructureForResizing() {
     const logoContainer = document.querySelector(".logo-container");
     const sortContainer = document.querySelector(".sort-container");
 
-    headerBtnsContainer.remove();
-    if (window.innerWidth < 760) {
+    if (parseInt(getComputedStyle(document.querySelector("header")).height) > 107) {
         logoContainer.append(headerBtnsContainer);
     } else {
-        sortContainer.prepend(headerBtnsContainer);
+        sortContainer.append(headerBtnsContainer);
     }
+    console.log(getComputedStyle(document.querySelector("header")).height);
 }
 function updateBooksDisplay() {
     currentShelf = 0;

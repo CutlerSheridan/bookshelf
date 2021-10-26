@@ -3,6 +3,9 @@
     <title>Bookshelf</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;500;600;700;800&family=Bellefair&family=Cormorant+Upright:wght@500;600;700&family=Dancing+Script:wght@400;500;600;700&family=Fleur+De+Leah&family=Gentium+Basic&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
       rel="stylesheet">
     <link rel="stylesheet" href="styles/style.css">
@@ -15,15 +18,16 @@
         </div>
 
         <div class="sort-container">
-            <div class="btns-container">
-                <button class="header-btn" id="add-book-button">Add a book</button>
-                <button class="header-btn" id="clear-shelves-button">Clear shelves</button>
-            </div>
+            
             <p class="sort-label">Sort <span class="material-icons-outlined" id="sort-label-icon">height</span></p>
             <button class="sort-btn sort-btn-unselected" value="title">Title</button>
             <button class="sort-btn sort-btn-unselected" value="author">Author</button>
             <button class="sort-btn sort-btn-unselected" value="pages">Pages</button>
             <button class="sort-btn sort-btn-unselected" value="hasRead">Read?</button>
+            <div class="btns-container">
+                <button class="header-btn" id="add-book-button">Add a book</button>
+                <button class="header-btn" id="clear-shelves-button">Clear shelves</button>
+            </div>
         </div>
     </header>
 

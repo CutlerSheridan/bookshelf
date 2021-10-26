@@ -15,12 +15,16 @@
     --clr-book-dark: rgb(128,25,26);
     --clr-book-darker: rgb(97, 19, 20);
 
+    --font-pri: "Alegreya", serif;
+    --font-sec: "Bellefair", serif;
+
     --shelf-height: 17rem;
     --book-height: 15rem;
-    --book-gap: 1rem;
+    --book-gap: 0rem;
 
     min-height: 100%;
     font-size: 62.5%;
+    font-family: var(--font-sec);
 }
 * {
     margin: 0;
@@ -37,7 +41,7 @@ body {
 /*--HEADER START--*/
 header {
     min-height: 10rem;
-    padding: 1.5rem 1rem;
+    padding: 1.5rem 1rem 1rem 1rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -49,33 +53,41 @@ header {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    gap: 1rem;
 
 }
-@media only screen and (min-width: 500px) {
-    .logo-container {
-        gap: 5rem;
-    }
-}
 .site-title {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 3rem;
+    font-family: 'Fleur De Leah', cursive;
+    font-weight: 500;
+    font-size: 3.5rem;
     color: var(--clr-white);
 }
 @media only screen and (min-width: 450px) {
     .site-title {
-        font-size: 5rem;
+        font-size: 6rem;
     }
 }
 .btns-container {
     margin: auto;
+    padding-left: 2rem;
     display: flex;
     align-items: center;
     gap: 1rem;
 }
+@media only screen and (min-width: 500px) {
+    .btns-container {
+        padding-left: 5rem;
+    }
+}
+@media only screen and (min-width: 750px) {
+    .btns-container {
+        padding-left: 2rem;
+    }
+}
 .header-btn {
     padding: 1rem;
     font-size: 2rem;
+    font-family: var(--font-pri);
+    font-weight: 500;
     border: none;
     border-radius: .3rem;
     color: var(--clr-white);
@@ -89,6 +101,7 @@ header {
 }
 .sort-container {
     margin: .75rem auto;
+    padding-left: 2rem;
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -106,6 +119,7 @@ header {
 .sort-btn {
     padding: .5rem;
     font-size: 1.7rem;
+    font-family: var(--font-sec);
     color: white;
     background: var(--clr-sec-light);
     border: .15rem solid transparent;
@@ -123,12 +137,13 @@ header {
     background: var(--clr-sec-dark);
 }
 #clear-shelves-button {
-    width: 11rem;
+    width: 10rem;
     height: 3rem;
     padding: 0;
     font-size: 1.7rem;
+    font-weight: 400;
     background: transparent;
-    border-bottom: .2rem solid var(--clr-white);
+    border-bottom: .15rem solid var(--clr-white);
     border-radius: 0;
 }
 #clear-shelves-button:hover {
@@ -169,9 +184,8 @@ form {
 }
 .form-heading {
     margin-bottom: .5rem;
-}
-.form-group {
-    font-family: sans-serif;
+    font-family: var(--font-pri);
+    font-weight: 700;
 }
 .form-group-vertical {
     display: flex;
@@ -181,11 +195,13 @@ form {
 }
 .form-label {
     font-size: .9em;
+    font-family: var(--font-sec);
 }
 input {
     border: .4rem solid transparent;
     background: var(--clr-white);
     border-radius: .2rem;
+    font-family: var(--font-sec);
 }
 input:focus {
     outline: none;
@@ -220,6 +236,8 @@ button[type="submit"] {
     margin-top: 1rem;
     padding: 1.2rem;
     font-size: 1em;
+    font-family: var(--font-pri);
+    font-weight: 500;
     color: var(--clr-white);
     background: var(--clr-pri);
     border: none;
@@ -260,10 +278,12 @@ button[type="submit"]:active {
     justify-content: center;
     align-items: center;
     text-align: center;
-    border: .2rem solid transparent;
+    border: .2rem solid var(--clr-sec-dark);
     border-radius: .5rem;
     background: linear-gradient(to right, var(--clr-book-dark), var(--clr-book-light) 40%, var(--clr-book-light) 60%, var(--clr-book-dark));
-    transition: background-color .1s;
+    transition: 
+        background-color .1s,
+        border .2s;
 }
 .book:hover,
 .book:active {
@@ -272,20 +292,24 @@ button[type="submit"]:active {
 .title {
     padding: .2rem;
     font-size: 2rem;
+    font-family: var(--font-pri);
+    font-weight: 400;
 }
 .title-underline {
     width: 75%;
     height: .7rem;
-    margin: .8rem 0 1.3rem 0;
-    border: .1rem solid pink;
+    margin: .8rem 0 1rem 0;
+    border: .1rem solid var(--clr-sec-dark);
     border-left: none;
     border-right: none;
-    border-radius: .15rem;
+    border-radius: .2rem;
 }
 .author {
+    padding: 0 .2rem;
     font-size: 1.4rem;
 }
 .pages {
+    padding: .2rem 0;
     font-size: 1.2rem;
 }
 .read {
@@ -296,7 +320,7 @@ button[type="submit"]:active {
 /*--BOOK CONTROLS START--*/
 .book-controls {
     position: absolute;
-    bottom: -.2rem;
+    bottom: -.25rem;
     display: flex;
     justify-content: center;
     align-items: center;

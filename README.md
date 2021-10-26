@@ -1,7 +1,12 @@
-# A bookshelf
+# Bookshelf
+## Keep track of your books.
+Add books.  Sort them.  See how their sizes compare.  Keep track of what you haven't read yet.
+
+Mobile- and desktop-friendly.  Use the same device and your library will persist.
 
 #### TO-DO NEXT
-- choose fonts
+- get media breakpoint precise for header button moving
+- add wood texture to bookshelf?
 
 #### TO-DO LATER
 ###### Features
@@ -10,9 +15,9 @@
 - add ability to only show read or unread books?
 ###### Behavior
 - focus on title field upon pressing "add book"
+- make tapping book on mobile behave better
 - try (on a new branch) switching to a flex?
 ###### Style
-- add wood texture to bookshelf?
 - add signifier for which book was just added; maybe an outline that dissipates
 - figure out what read vs. unread should look like (or do they need to look different?  Maybe it only shows you this when you hover over a book?)
 - create three (red, green, and blue) color combos for books and randomly assign one to each book object upon creation?
@@ -21,6 +26,11 @@
 - add genres?
 
 ##### DONE
+- *v0.8.02*
+- add border to books
+- adjust book arrangement
+- choose fonts
+- adjust header style
 - *v0.8.01*
 - make header mobile-friendly
 - prevent bookshelf array from accepting duplicates

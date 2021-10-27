@@ -35,12 +35,14 @@ body {
     height: 100%;
     width: 100%;
     background: linear-gradient(to bottom, var(--clr-pri-light) 70%, var(--clr-pri-dark));
+    background-color: var(--clr-pri-dark);
+
 }
 
 /*--HEADER START--*/
 header {
     min-height: 10rem;
-    padding: 1.5rem 1rem 1rem 1rem;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -162,7 +164,7 @@ button {
 
 /*--NEW BOOK FORM START--*/
 .form-container {
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100%;
     height: 100%;
@@ -332,14 +334,13 @@ button[type="submit"]:active {
     width: 100%;
     height: 3rem;
     text-align: center;
+    border-radius: .5rem;
     opacity: 0;
     overflow: hidden;
 }
-.book:hover .book-controls,
-.book:active .book-controls {
+.book:hover .book-controls {
     opacity: 1;
     background: rgba(var(--clr-pri-dark-nums), .9);
-    border-radius: .5rem;
 }
 .read-toggle {
     display: none;
@@ -369,3 +370,18 @@ button[type="submit"]:active {
     overflow: hidden;
 }
 /*--BOOK CONTROLS END--*/
+
+/*--FOOTER START--*/
+footer {
+    margin: 10rem 3rem 4rem 3rem;
+    font-size: 1.5rem;
+    letter-spacing: .07rem;
+    color: var(--clr-sec-light);
+}
+a {
+    color: var(--clr-sec-light);
+}
+a:hover {
+    color: var(--clr-white);
+}
+/*--FOOTER END--*/

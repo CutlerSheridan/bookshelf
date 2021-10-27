@@ -5,7 +5,9 @@ Add books.  Sort them.  See how their sizes compare.  Keep track of what you hav
 Mobile- and desktop-friendly.  Use the same device and your library will persist.
 
 #### TO-DO NEXT
-- add credit
+- fix on mobile how, after tapping a few books, the outline stops showing up
+- fix form on landscape mobile
+- add more starting books
 
 #### TO-DO LATER
 ###### Features
@@ -13,7 +15,6 @@ Mobile- and desktop-friendly.  Use the same device and your library will persist
 - how to make things draggable?  not necessary but interesting question
 - add ability to only show read or unread books?
 ###### Behavior
-- make tapping book on mobile behave better
 - try (on a new branch) switching to a flex?
 ###### Style
 - figure out what read vs. unread should look like (or do they need to look different?  Maybe it only shows you this when you hover over a book?)
@@ -22,6 +23,14 @@ Mobile- and desktop-friendly.  Use the same device and your library will persist
 - add genres?
 
 ##### DONE
+- *v0.8.04*
+- set background-color so extra space when pulling too low or high isn't white
+- get rid of vertical white sidebars on landscape iOS Safari
+- stop window resize listener from triggering on mobile when address bar hides
+- fix "add a book" form on mobile so it covers entire page or doesn't allow scrolling when active
+- fix mobile control so books deselect when you click elsewhere
+- fix credit link
+- add credit
 - *v0.8.03*
 - change cursor over buttons
 - make Book.hasRead persist between sessions

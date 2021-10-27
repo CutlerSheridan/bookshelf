@@ -208,7 +208,12 @@ function removeTheForSorting(book) {
 /*--CONTROL END--*/
 
 /*--VIEW START--*/
-window.addEventListener("resize", updateBooksDisplay);
+let windowWidth = window.innerWidth;
+window.addEventListener("resize", () => {
+    if (windowWidth != window.innerWidth) {
+        updateBooksDisplay();
+    }
+});
 window.addEventListener("resize", adjustHeaderStructureForResizing);
 
 function adjustHeaderStructureForResizing() {
@@ -226,7 +231,6 @@ function updateBooksDisplay() {
     currentShelf = 0;
     clearShelves();
     sortBooks();
-    //myBookshelf.forEach(book => createBookElement(book));
     for (let i = 0; i < myBookshelf.length; i++) {
         const newBookElement = createBookElement(myBookshelf[i]);
         calculateCurrentShelf(parseInt(newBookElement.style.width) * 10);
@@ -246,6 +250,17 @@ function updateBooksDisplay() {
 
     localStorage.setItem("storedBookshelf", JSON.stringify(myBookshelf));
 
+    /*const allBookElements = document.querySelectorAll(".book");
+    allBookElements.forEach(book => book.addEventListener("touchend", highlightBook));*/
+    document.addEventListener("touchend", highlightBook);
+}
+function highlightBook(e) {
+    if (e.target.classList.contains("book")) {
+        e.target.style.borderColor = "var(--clr-sec-dark)";
+        const bookElement = document.querySelector(`.book[data-order-loc="${e.target.dataset.orderLoc}" > .book-controls`);
+        bookElement.style.opacity = "1";
+        bookElement.style.background = "rgba(var(--clr-pri-dark-nums), .9)";
+    }
 }
 function shortenText(bookTextElement, bookElement) {
     const bookWidth = parseInt(getComputedStyle(bookElement).width) - 4;

@@ -34,7 +34,6 @@
 body {
     height: 100%;
     width: 100%;
-    background: var(--clr-pri-light);
     background: linear-gradient(to bottom, var(--clr-pri-light) 70%, var(--clr-pri-dark));
 }
 
@@ -82,6 +81,9 @@ header {
     .btns-container {
         padding-left: 2rem;
     }
+}
+button {
+    cursor: pointer;
 }
 .header-btn {
     padding: 1rem;
@@ -138,21 +140,23 @@ header {
 }
 #clear-shelves-button {
     width: 10rem;
-    height: 3rem;
+    height: 3.5rem;
     padding: 0;
     font-size: 1.7rem;
     font-weight: 400;
     background: transparent;
     border-bottom: .15rem solid var(--clr-white);
     border-radius: 0;
+    transition: height .2s;
 }
 #clear-shelves-button:hover {
-    color: pink;
-    border-bottom-color: pink;
+    height: 3rem;
+    color: var(--clr-sec-light);
+    border-bottom-color: var(--clr-sec-light);
 }
 #clear-shelves-button:active {
-    color: rgb(209, 93, 93);
-    border-bottom-color: rgb(209, 93, 93);
+    color: var(--clr-sec);
+    border-bottom-color: var(--clr-sec);
 }
 /*--HEADER END--*/
 
@@ -278,7 +282,7 @@ button[type="submit"]:active {
     justify-content: center;
     align-items: center;
     text-align: center;
-    border: .2rem solid var(--clr-sec-dark);
+    border: .3rem solid var(--clr-sec-dark);
     border-radius: .5rem;
     background: linear-gradient(to right, var(--clr-book-dark), var(--clr-book-light) 40%, var(--clr-book-light) 60%, var(--clr-book-dark));
     transition: 
@@ -287,10 +291,10 @@ button[type="submit"]:active {
 }
 .book:hover,
 .book:active {
-    border: .2rem solid var(--clr-pri-dark);
+    border: .3rem solid var(--clr-pri-dark);
 }
 .title {
-    padding: .2rem;
+    padding: .3rem;
     font-size: 2rem;
     font-family: var(--font-pri);
     font-weight: 400;
@@ -305,11 +309,11 @@ button[type="submit"]:active {
     border-radius: .2rem;
 }
 .author {
-    padding: 0 .2rem;
+    padding: 0 .3rem;
     font-size: 1.4rem;
 }
 .pages {
-    padding: .2rem 0;
+    padding: .3rem 0;
     font-size: 1.2rem;
 }
 .read {
@@ -361,6 +365,7 @@ button[type="submit"]:active {
 }
 .material-icons-outlined {
     max-width: 2.4rem;
+    cursor: pointer;
     overflow: hidden;
 }
 /*--BOOK CONTROLS END--*/

@@ -5,8 +5,7 @@ Add books.  Sort them.  See how their sizes compare.  Keep track of what you hav
 Mobile- and desktop-friendly.  Use the same device and your library will persist.
 
 #### TO-DO NEXT
-- get media breakpoint precise for header button moving
-- add wood texture to bookshelf?
+- add credit
 
 #### TO-DO LATER
 ###### Features
@@ -14,19 +13,25 @@ Mobile- and desktop-friendly.  Use the same device and your library will persist
 - how to make things draggable?  not necessary but interesting question
 - add ability to only show read or unread books?
 ###### Behavior
-- focus on title field upon pressing "add book"
 - make tapping book on mobile behave better
 - try (on a new branch) switching to a flex?
 ###### Style
-- add signifier for which book was just added; maybe an outline that dissipates
 - figure out what read vs. unread should look like (or do they need to look different?  Maybe it only shows you this when you hover over a book?)
 - create three (red, green, and blue) color combos for books and randomly assign one to each book object upon creation?
-- add credit
 ###### Other
 - add genres?
 
 ##### DONE
+- *v0.8.03*
+- change cursor over buttons
+- make Book.hasRead persist between sessions
+- focus on title field upon pressing "add book"
+- why doesn't "toggleReadState" work anymore lol _(stored books were reloading as objects thus incompatible with that function)_
+- fix books so they don't reorder when the same sorting method is called twice in a row
+- add signifier for which book was just added; maybe an outline that dissipates
+- add wood texture to bookshelf? _TRIED IT-LOOKED BAD_
 - *v0.8.02*
+- get media breakpoint precise for header button moving -- actually changed so header button moves when header height increases/decreases
 - add border to books
 - adjust book arrangement
 - choose fonts

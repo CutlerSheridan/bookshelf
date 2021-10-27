@@ -16,16 +16,17 @@ Book.prototype.toggleReadState = function() {
 let currentShelf = 0;
 let sortingMethod = "default";
 let myBookshelf = [];
-myBookshelf.push(...JSON.parse(localStorage.getItem("storedBookshelf")));
+const preexistingBooks = JSON.parse(localStorage.getItem("storedBookshelf"));
+preexistingBooks.forEach(book => { new Book(book.title, book.author, book.pages, book.hasRead); });
 
-const dune = new Book("Dune", "Frank Herbert", 798, true);
-const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 366, true);
-const hp4 = new Book("Harry Potter and the Goblet of Fire", "J.K. Rowling", 734, true);
-const theStand = new Book("The Stand", "Stephen King", 1152, false);
-const pps = new Book("Perdido Street Station", "China Miéville", 710, true);
-const later = new Book("Later", "Stephen King", 248, true);
-const mrNorrell = new Book("Jonathan Strange & Mr. Norrell", "Susanna Clarke", 1006, true);
-const neuromancer = new Book("Neuromancer", "William Gibson", 292, false);
+new Book("Dune", "Frank Herbert", 798, true);
+new Book("The Hobbit", "J.R.R. Tolkien", 366, true);
+new Book("Harry Potter and the Goblet of Fire", "J.K. Rowling", 734, true);
+new Book("The Stand", "Stephen King", 1152, false);
+new Book("Perdido Street Station", "China Miéville", 710, true);
+new Book("Later", "Stephen King", 248, true);
+new Book("Jonathan Strange & Mr. Norrell", "Susanna Clarke", 1006, true);
+new Book("Neuromancer", "William Gibson", 292, false);
 
 adjustHeaderStructureForResizing();
 updateBooksDisplay();
@@ -52,11 +53,10 @@ function clearAndDisplayAddBookScreen(e) {
     e.preventDefault();
     bookForm.reset();
     toggleAddBookScreenVisibility();
-    focusOnTitleField();
+    setTimeout(() => focusOnTitleField(), 50);
 }
 // why tf doesn't this work
 function focusOnTitleField() {
-    addBookButton.blur();
     bookForm.elements["title"].focus();
     console.log(bookForm.elements["title"]);
 }
@@ -89,6 +89,10 @@ function createBookFromForm(e) {
     );
     updateBooksDisplay();
     toggleAddBookScreenVisibility();
+    const newBookElement = document.querySelector(`.book[data-order-loc="${myBookshelf.indexOf(newBook)}"]`);
+    newBookElement.style.borderColor = "pink";
+    setTimeout(() => {newBookElement.style.borderColor = "var(--clr-sec-dark)";}, 650);
+    setTimeout(() => updateBooksDisplay(), 900);
 }
 
 const clearButton = document.querySelector("#clear-shelves-button");
@@ -147,7 +151,7 @@ function sortBooks() {
                 const xLast = xAuthorArray[xAuthorArray.length - 1];
                 const yAuthorArray = y.author.split(" ");
                 const yLast = yAuthorArray[yAuthorArray.length - 1];
-                return xLast > yLast ? 1 : -1;
+                return xLast > yLast ? 1 : xLast < yLast ? -1 : 0;
             });
             break;
         case "authorReversed":
@@ -156,31 +160,31 @@ function sortBooks() {
                 const xLast = xAuthorArray[xAuthorArray.length - 1];
                 const yAuthorArray = y.author.split(" ");
                 const yLast = yAuthorArray[yAuthorArray.length - 1];
-                return xLast > yLast ? -1 : 1;
+                return xLast < yLast ? 1 : xLast > yLast ? -1 : 0;
             });
             break;
         case "title":
             myBookshelf.sort((x, y) => {
                 const xTitle = removeTheForSorting(x);
                 const yTitle = removeTheForSorting(y);
-                return xTitle > yTitle ? 1 : -1;
+                return xTitle > yTitle ? 1 : xTitle < yTitle ? -1 : 0;
             });
             break;
         case "titleReversed":
             myBookshelf.sort((x, y) => {
                 const xTitle = removeTheForSorting(x);
                 const yTitle = removeTheForSorting(y);
-                return xTitle > yTitle ? -1 : 1;
+                return xTitle < yTitle ? 1 : xTitle > yTitle ? -1 : 0;
             });
             break;
         case "hasRead":
         case "pages":
-            myBookshelf.sort((x, y) => x[sortingMethod] > y[sortingMethod] ? 1 : -1);
+            myBookshelf.sort((x, y) => x[sortingMethod] > y[sortingMethod] ? 1 : x[sortingMethod] < y[sortingMethod] ? -1 : 0);
             break;
         case "hasReadReversed":
         case "pagesReversed":
             const sortingRoot = sortingMethod.slice(0, sortingMethod.indexOf("Reversed"));
-            myBookshelf.sort((x, y) => x[sortingRoot] > y[sortingRoot] ? -1 : 1);
+            myBookshelf.sort((x, y) => x[sortingRoot] < y[sortingRoot] ? 1 : x[sortingRoot] > y[sortingRoot] ? -1 : 0);
             break;
         default:
             return;
@@ -217,7 +221,6 @@ function adjustHeaderStructureForResizing() {
     } else {
         sortContainer.append(headerBtnsContainer);
     }
-    console.log(getComputedStyle(document.querySelector("header")).height);
 }
 function updateBooksDisplay() {
     currentShelf = 0;
@@ -324,7 +327,6 @@ function createBookElement(book) {
         bookControls.style.gap = "0";
     }
 
-    //const bookInfo = [bookTitle, titleUnderline, bookAuthor, bookPages, bookControls];
     bookElement.append(...[bookTitle, titleUnderline, bookAuthor, bookPages, bookControls]);
     return bookElement;
 }
@@ -373,5 +375,6 @@ function toggleReadStyle(readToggle) {
     const bookElement = document.querySelector(`.book[data-order-loc="${readToggle.dataset.orderLoc}"]`);
     bookElement.classList.toggle("read");
     readToggle.classList.toggle("read-toggle-icon-checked");
+    localStorage.setItem("storedBookshelf", JSON.stringify(myBookshelf));
 }
 /*--VIEW END--*/

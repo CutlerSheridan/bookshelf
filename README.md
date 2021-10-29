@@ -19,6 +19,8 @@ Mobile- and desktop-friendly.  Use the same device and your library will persist
 - add genres?
 ----------------------
 ##### DONE
+- *v1.0.01*
+- fix localStorage GET error
 - *v1.0.00*
 - figure out what read vs. unread should look like (or do they need to look different?  Maybe it only shows you this when you hover over a book? _changed title underline thickness_)
 - add more starting books

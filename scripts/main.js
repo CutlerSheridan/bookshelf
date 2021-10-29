@@ -16,8 +16,10 @@ Book.prototype.toggleReadState = function() {
 let currentShelf = 0;
 let sortingMethod = "default";
 let myBookshelf = [];
-const preexistingBooks = JSON.parse(localStorage.getItem("storedBookshelf"));
-preexistingBooks.forEach(book => { new Book(book.title, book.author, book.pages, book.hasRead); });
+if (localStorage.getItem("storedBookshelf") != null) {
+    const preexistingBooks = JSON.parse(localStorage.getItem("storedBookshelf"));
+    preexistingBooks.forEach(book => { new Book(book.title, book.author, book.pages, book.hasRead); });
+}
 
 new Book("Dune", "Frank Herbert", 798, true);
 new Book("The Hobbit", "J.R.R. Tolkien", 366, true);

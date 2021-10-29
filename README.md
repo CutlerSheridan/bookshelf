@@ -6,23 +6,24 @@ Mobile- and desktop-friendly.  Use the same device and your library will persist
 
 #### TO-DO NEXT
 - fix on mobile how, after tapping a few books, the outline stops showing up
-- fix form on landscape mobile
-- add more starting books
-
 #### TO-DO LATER
 ###### Features
 - sort multiple ways at once?
-- how to make things draggable?  not necessary but interesting question
+- make things draggable?  not necessary and probably won't work for this but interesting question
 - add ability to only show read or unread books?
 ###### Behavior
 - try (on a new branch) switching to a flex?
 ###### Style
-- figure out what read vs. unread should look like (or do they need to look different?  Maybe it only shows you this when you hover over a book?)
 - create three (red, green, and blue) color combos for books and randomly assign one to each book object upon creation?
 ###### Other
 - add genres?
-
+----------------------
 ##### DONE
+- *v1.0.00*
+- figure out what read vs. unread should look like (or do they need to look different?  Maybe it only shows you this when you hover over a book? _changed title underline thickness_)
+- add more starting books
+- adjust credit style
+- fix form on landscape mobile
 - *v0.8.04*
 - set background-color so extra space when pulling too low or high isn't white
 - get rid of vertical white sidebars on landscape iOS Safari

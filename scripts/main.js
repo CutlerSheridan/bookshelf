@@ -27,6 +27,13 @@ new Book("Perdido Street Station", "China Miéville", 710, true);
 new Book("Later", "Stephen King", 248, true);
 new Book("Jonathan Strange & Mr. Norrell", "Susanna Clarke", 1006, true);
 new Book("Neuromancer", "William Gibson", 292, false);
+new Book("Where'd you go, Bernadette?", "Maria Semple", 330, true);
+new Book("The Scar", "China Miéville", 578, true);
+new Book("Console Wars", "Blake J. Harris", 576, false);
+new Book("Word by Word", "Kory Stamper", 296, true);
+new Book("The Terror", "Dan Simmons", 769, true);
+new Book("Antkind", "Charlie Kaufman", 720, false);
+new Book("The Divine Comedy", "Dante Alighieri", 798, false);
 
 adjustHeaderStructureForResizing();
 updateBooksDisplay();
@@ -40,7 +47,6 @@ function addBookToBookshelf(book) {
     }
     myBookshelf.push(book);
 }
-
 /*--MODEL END--*/
 
 /*--CONTROL START--*/
@@ -212,6 +218,7 @@ let windowWidth = window.innerWidth;
 window.addEventListener("resize", () => {
     if (windowWidth != window.innerWidth) {
         updateBooksDisplay();
+        windowWidth = window.innerWidth;
     }
 });
 window.addEventListener("resize", adjustHeaderStructureForResizing);

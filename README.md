@@ -2,23 +2,25 @@
 ## Keep track of your books.
 Add books.  Sort them.  See how their sizes compare.  Keep track of what you haven't read yet.
 
-Mobile- and desktop-friendly.  Use the same device and your library will persist.
+Mobile- and desktop-friendly.  Use the same device and your library will persist.  Hover over any abbreviated title to see the full name.
 
 #### TO-DO NEXT
-- fix on mobile how, after tapping a few books, the outline stops showing up
 #### TO-DO LATER
 ###### Features
 - sort multiple ways at once?
 - make things draggable?  not necessary and probably won't work for this but interesting question
 - add ability to only show read or unread books?
 ###### Behavior
-- try (on a new branch) switching to a flex?
+- fix on mobile how, after tapping a few books, the outline stops showing up
 ###### Style
 - create three (red, green, and blue) color combos for books and randomly assign one to each book object upon creation?
 ###### Other
 - add genres?
 ----------------------
 ##### DONE
+- *v1.0.02*
+- fix header restructuring on wider computer monitors because the header is naturally taller so triggers the switch when it shouldn't
+- change book width algorithm to scale logarithmically
 - *v1.0.01*
 - fix localStorage GET error
 - *v1.0.00*

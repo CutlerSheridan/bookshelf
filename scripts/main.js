@@ -230,7 +230,7 @@ function adjustHeaderStructureForResizing() {
     const logoContainer = document.querySelector(".logo-container");
     const sortContainer = document.querySelector(".sort-container");
 
-    if (parseInt(getComputedStyle(document.querySelector("header")).height) > 107) {
+    if (parseInt(getComputedStyle(document.querySelector("header")).height) > 150) {
         logoContainer.append(headerBtnsContainer);
     } else {
         sortContainer.append(headerBtnsContainer);
@@ -308,7 +308,7 @@ function createBookElement(book) {
     if (!book.hasRead) {
         bookElement.classList.toggle("read");
     }
-    bookElement.style.width = `${book.pages / 60}rem`;
+    bookElement.style.width = `${(Math.log(book.pages) / Math.log(1.12)) - (Math.log(book.pages) / Math.log(2) + 35.8)}rem`;
     const bookTitle = document.createElement("div");
     bookTitle.classList.add("title");
     bookTitle.textContent = book.title;
@@ -402,3 +402,15 @@ function toggleReadStyle(readToggle) {
     localStorage.setItem("storedBookshelf", JSON.stringify(myBookshelf));
 }
 /*--VIEW END--*/
+
+for (let i = 1.1; i < 1.2; i += .01) {
+    console.log(`Testing log${i}`);
+    logTableTest(i);
+}
+function logTableTest(base) {
+    let logArray = [];
+    for (let i = 150; i < 1200; i += 50) {
+        logArray.push({logOf: i, equals: Math.log(i) / Math.log(base)});
+    }
+    console.table(logArray);
+}

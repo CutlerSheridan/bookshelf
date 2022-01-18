@@ -3,7 +3,7 @@
 Add books.  Sort them.  See how their sizes compare.  Keep track of what you haven't read yet.
 
 Mobile- and desktop-friendly.  Use the same device and your library will persist.  Hover over any abbreviated title to see the full name.
-
+----------------------
 #### TO-DO NEXT
 #### TO-DO LATER
 ###### Features

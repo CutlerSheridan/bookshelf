@@ -1,17 +1,19 @@
 /*--MODEL START--*/
-function Book(title, author, pages, hasRead) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.hasRead = hasRead;
-    addBookToBookshelf(this);
+class Book {
+    constructor(title, author, pages, hasRead) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.hasRead = hasRead;
+        addBookToBookshelf(this);
+    }
+    info() {
+        return `${this.title}, by ${this.author}.\n${this.pages} pages long.\n${this.hasRead ? "Read." : "Not read."}`;
+    }
+    toggleReadState() {
+        this.hasRead = !this.hasRead;
+    }
 }
-Book.prototype.info = function() {
-    return `${this.title}, by ${this.author}.\n${this.pages} pages long.\n${this.hasRead ? "Read." : "Not read."}`;
-};
-Book.prototype.toggleReadState = function() {
-    this.hasRead = !this.hasRead;
-};
 
 let currentShelf = 0;
 let sortingMethod = "default";
